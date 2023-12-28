@@ -7,7 +7,14 @@
 
 # ISHA TECH NOTES
 
-🔖 .NET
-🔖 JAVA
-🔖 DATABASE
-🔖 SYSTEM DESIGN & SYSTEM ARCHITECTURE
+🚢 Tech Docs References
+
+🚢 Tech Blogs References
+
+🚢 FPTU Study Take Notes
+
+🚢 Software Knowledge
+	⚓ Programming Knowledge
+		🏴‍☠️ Dot Net
+		🏴‍☠️ 🚢 Java
+
