@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/main-home-page/","tags":["gardenEntry"]}
+{"dg-publish":true,"dg-permalink":"home","permalink":"/home/","pinned":true,"tags":["gardenEntry"]}
 ---
 
 
@@ -16,7 +16,6 @@
 ## 🚢 Software Knowledge
 ### ⚓ Programming Knowledge
 ##### |🏴‍☠ Dot Net | 🏴‍☠️ Java |
-
 
 
 
