@@ -15,5 +15,7 @@
 
 ## 🚢 Software Knowledge
 ### ⚓ Programming Knowledge
-#### 🏴‍☠️ Dot Net 🏴‍☠️ Java
+| 🏴‍☠ Dot Net | 🏴‍☠️ Java |
+
+
 
