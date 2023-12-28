@@ -7,14 +7,14 @@
 
 # ISHA TECH NOTES
 
-🚢 Tech Docs References
+### 🚢 Tech Docs References
 
 🚢 Tech Blogs References
 
 🚢 FPTU Study Take Notes
 
 🚢 Software Knowledge
-	⚓ Programming Knowledge
-		🏴‍☠️ Dot Net
-		🏴‍☠️ 🚢 Java
+- ⚓ Programming Knowledge
+	- 🏴‍☠️ Dot Net
+	- 🏴‍☠️ 🚢 Java
 
