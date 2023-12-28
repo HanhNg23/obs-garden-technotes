@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/fpt-study-take-notes/fall-2023-semester-5/prn-211/tong-hop-kien-thuc-prn-211/"}
+{"dg-publish":true,"permalink":"/fpt-study-take-notes/fall-2023-semester-5/prn-211/tong-hop-kien-thuc-prn-211/","noteIcon":"1"}
 ---
 
 
