@@ -398,9 +398,9 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 	       >  <span style="color:#555555"> The picture is Voting Decision Manager - describes the relevant classes</span>
 	       > - <span style="color:#91819c">By using this approach --> a series of `AccessDecisionVoter` implementations (like RoleVoter, AuthenticatedVoter, or your new CustomVoter,...) are polled on an authorization decision ---> then the `AccessDecisionManager` decides whether or not to throw an `AccessDeniedException` based on its assessment of the votes.</span>
 	       >   ![](https://i.imgur.com/QIwNsvX.png)
-	       > - Note that, the concrete/the voting implementations of `AccessDecisionVoter` interface have to return an int - with possible values being **reflected in the `AccessDecisionVoter` static fields named**: 
+	       > - Note that, the concrete/the voting implementations of `AccessDecisionVoter` interface have to return an int - with possible values being **reflected in the `AccessDecisionVoter` static fields named**: EEEEEE
 	       > <span style="color:#91819c">ACCESS_ABSTAIN - A voting implementation returns this when if it has no opinion on an authorization decision</span>
-	       > <span style="color:#91819c">ACCESS_DENIED || ACCESS_GRANTED (1 of 2): A voting implementation returns either of them if it does have an opinion .</span>
+	       > <span style="color:#91819c">ACCESS_DENIED || ACCESS_GRANTED (1 of 2): A voting implementation returns either of them if it does have an opinion</span>
 	       > - In the picture, we can see that `AccessDecisionManager` has three concrete - regard as `AccessDecisionVoter` - to give the decision of access denied for current authentication obj: 
 	       >   ![](https://i.imgur.com/Ky5VzlP.png)
 	       >   - The `ConsensusBased` implementation grants or denies access based on the consensus of non-abstain votes (phiếu trắng)
