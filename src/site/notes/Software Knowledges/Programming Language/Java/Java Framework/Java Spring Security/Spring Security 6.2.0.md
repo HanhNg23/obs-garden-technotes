@@ -296,4 +296,34 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 - If the credentials of client exists -> the `AbstractAuthenticationProcessingFilter` can authenticate any authentication requests that are submitted to it
 - [![](https://i.imgur.com/LSFK7AQ.png)](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html#servlet-authentication-abstractprocessingfilter)
 
-
+### Authorization
+<span style="color:#91819c">This section concentrates to configure your application's authorization rules
+- Consider attaching authorization rules to request URIs and methods
+- Consider how Spring Security authorization works</span>
+#### Authorization Architecture
+- Describes the SprSe architecture that applies to authorization
+- Authorities
+	- Authentication has referred that all the implementations of Authentication Interface  <span style="color:#d4a216"> store a list of `GrantedAuthority` objects</span> - represent the authorities (quyền hạn) that have been granted to the principal
+	- The `GrantedAuthority` objects -> <span style="color:#d4a216">inserted into the Authentication obj by the `AuthenticationManager`</span> & are later <span style="color:#d4a216">read by `AccessDecisionManager` instances when making authorization decisions</span>
+	    ![](https://i.imgur.com/a1AVLqW.png)
+	    ![](https://i.imgur.com/deoduir.png)
+	- > [!Note] Method `String getAuthority();`
+	  > This method is used by an `AuthorizationManager` instance to obtain a precise **String** **representation of the `GrantedAuthority`**-> this String - a `GrantedAuthority` (thằng đại diện cho thằng này là cái string được trả về từ `String getAuthority();`) can be "read" easily by most `AuthorizationManager` implementations
+	- > [!Caution] String is null
+	  > If a `GrantedAuthority` cannot be precisely represented as a String - be considered "complex" -> `getAuthority()`will be must return null.
+	  > the "complex" of `GrantedAuthority` would be an implementation that stores a List of operations and authority thresholds(for example, instead contains one Role, the implementation stores a list different roles) --> representing this complex GrantedAuthority as a String (this refer have to read the array) would be DIFFICULT --> As a result, the getAuthority() method should return null.
+	  > ==> any AuthorizationManager want to support the specific GrantedAuthority (for ex: for role USER || ADMIN retrieve from the list which contain both USER, ADMIN) -> need to support the specific `GrantedAuthority` implementation (for example: implementing classes `OAuth2UserAuthority`, `OcidcUserAuthority`,..) to understand its "complex" contents.
+	  > 	
+	  <span style="color:#d4a216">RESOVE HOW ?</span>
+	   <span style="color:#555555">SprSe includes one concrete `GrantedAuthority` implementation: `SimpleGrantedAuthority` --> this implementation lets any user-specified `String` be converted into a `GrantedAuthority` (sẽ kiểu đọc từ danh sách các role, lấy ra một role và convert sang Sring). All `AuthenticationProvider` instances included with the security architecture use `SimpleGrantedAuthority` to populate the `Authentication` object</span>
+	   *<span style="color:#555555">Configuration:</span>*  
+		``` Java
+		   public class MyDatabaseUserDetailsService implements UserDetailsService {
+		    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		       User user = userDao.findByUsername(username);
+		       List<SimpleGrantedAuthority> grantedAuthorities = user.getAuthorities().map(authority -> new SimpleGrantedAuthority(authority)).collect(Collectors.toList()); // (1)
+		       return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities); // (2)
+		    }
+		  }
+		  ```
+	- 🍎 Reference: [Authorities](https://docs.spring.io/spring-security/reference/servlet/authorization/architecture.html#authz-authorities)
