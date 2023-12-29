@@ -438,9 +438,9 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 			>> - It votes if any ConfigAttribute begins with the ROLE_ prefix
 			>> - It votes to grant access if there is `GrantedAuthority` 's representation return a String (from the `getAuthority()` method) exactly equal to one or more `ConfigAttributes` that that start with the ROLE_ prefix. If no -> vote to deny access, if `ConfigAttributes` begins with ROLE_ (not thing following) -> voter abstains. 
 			>>   ![](https://i.imgur.com/OwDw2Cf.png)
-			>> - 🍎 Reference: Custom Voters 
-			>> - [Custom AccessDecisionVoters in Spring Security](https://www.baeldung.com/spring-security-custom-voter)
-			>> - [Configuring Spring Boot’s Method Level Security To Check Only The Required Permission](https://medium.com/@adammcg97/configuring-spring-boots-method-level-security-to-use-a-non-cached-source-to-check-for-7df7317127d2)
-			>> - [Spring Security: Custom Access Decision Voter](https://blog.jdriven.com/2019/10/spring-security-custom-access-decision-voter/)
-		   > - > [!Caution]  
+			> - 🍎 Reference: Custom Voters 
+			> - [Custom AccessDecisionVoters in Spring Security](https://www.baeldung.com/spring-security-custom-voter)
+			> - [Configuring Spring Boot’s Method Level Security To Check Only The Required Permission](https://medium.com/@adammcg97/configuring-spring-boots-method-level-security-to-use-a-non-cached-source-to-check-for-7df7317127d2)
+			> - [Spring Security: Custom Access Decision Voter](https://blog.jdriven.com/2019/10/spring-security-custom-access-decision-voter/)
+		   > > [!Caution]  
 		   > `AccessDecisionVoter` and `AccessDecisionManager` are not recommend to use, instead you should use `AuthorizationManager` above, this section is included for historical purpose
