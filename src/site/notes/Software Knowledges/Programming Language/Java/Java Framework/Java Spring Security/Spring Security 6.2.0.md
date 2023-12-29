@@ -7,7 +7,7 @@
 
 ---
 
-## Feature Overview
+## 1. Feature Overview
 As a framework, Spring Security provides support security in 3 aspects : Authentication - Authorization - Mechanism Protection Against Common Attacks 
 ### 1. Authentication
 - What is authentication ? 
@@ -56,12 +56,12 @@ As a framework, Spring Security provides support security in 3 aspects : Authent
 
 
 
-## Servlet Application
+## 2. Servlet Application
 Spring Security integrates with the Servlet Container by using a standard `Servlet Filter` --> can work with any application runs in a Servlet Container
 - Servlet Container
   > [!INFO] Servlet Container
    > [![](https://i.imgur.com/RBkQLnG.png)](https://www.baeldung.com/java-servlets-containers-intro)
-### Started
+### 2.1 Started
 - For supporting the Servlet Security, SprSe coordinate with Spring Boot to set the default configurations when you integrated for your servlet, so that it will have these following behaviors in runtime:
 	![](https://i.imgur.com/HgLhA00.png)
 - Let understand how SprBoot is coordinating with SprSe to achieve this by taking a look at <span style="color:#8d8d2a">Boot's security auto configuration</span> for example :
@@ -102,7 +102,7 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 	- For <span style="color:#d4a216">Authentication</span> + need <span style="color:#d4a216">authentication stateful || stateless</span>
 	- For <span style="color:#d4a216">Authorization</span> 
 	- <span style="color:#d4a216">Defense</span> - SprSe support defaults protections + additional protection you need
-### Architecture
+### 2.2 Architecture
 - Discusses SprSe's high-level architecture within Servlet based applications
 #### A review of Servlet Filters
 - The filters is really powerful in helping SprSe building a secure Servlet Application
@@ -137,11 +137,11 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 	}
 	```
 
-### Authentication
+### 2.3 Authentication
    <span style="color:#d4a216">2 Parts</span>
 - The Servlet Authentication Architecture - concentrate on abstract describing the architecture without much discussion on how it applies to concrete flows
 - The Authentication Mechanisms - concentrate on concrete ways in which users can authenticate
-#### Part 1 - Discuss Servlet Authentication Architecture
+#### 2.3.1 Part 1 - Discuss Servlet Authentication Architecture
    - This is the expands on Architecture Section Above -  [Servlet Security: The Big Picture](https://docs.spring.io/spring-security/reference/servlet/architecture.html#servlet-architecture), describe the main architectural components of SprSe's used in Servlet Authentication, include following here :
 	   -  <span style="color:#555555">SecurityContextHolder</span>
 	   -  <span style="color:#555555">SecurityContextHolder</span>
@@ -152,12 +152,12 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 	   -  <span style="color:#555555">AuthenticationProvider</span>
 	   -  <span style="color:#555555">Request Credentials with AuthenticationEntryPoint</span>
 	   -  <span style="color:#555555">AbstractAuthenticationProcessingFilter</span>
-#### Part 2 - Authentication Architecture
+#### 2.3.2 Part 2 - Authentication Architecture
 - ![](https://i.imgur.com/aWbkAYo.png)
 - ![](https://i.imgur.com/LSFK7AQ.png)
    [🍎 Source 👆](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html#servlet-authentication-abstractprocessingfilter)
 - ![](https://i.imgur.com/yDpbklX.png)
-##### SecurityContextHolder
+##### 2.3.2.1 SecurityContextHolder
 - `SecurityContextHolder` - the heart of Spring Security's authentication model 
 - <span style="color:#d4a216">It contains the `SecurityContext`</span>
 - This is the place that SprSe stores the details of who is authenticated
@@ -202,10 +202,10 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
   > 	- 🍎 [An Introduction to ThreadLocal in Java](https://www.baeldung.com/java-threadlocal)
   > 	- 🍎 [Java ThreadLocal Example](https://www.digitalocean.com/community/tutorials/java-threadlocal-example)
   > 	- 🍎 [Tìm hiểu về ThreadLocal trong Java](https://viblo.asia/p/tim-hieu-ve-threadlocal-trong-java-Qbq5QaLE5D8)
-##### SecurityContext
+##### 2.3.2.2 SecurityContext
 - Obtained from the `SecurityContextHolder`
 - Contains an `Authentication` object
-##### Authentication
+##### 2.3.2.3 Authentication
 - It is an interface - serves 2 main purposes within SprSe:
 	- <span style="color:#d4a216">An input to `AuthenticationManager`</span> to provide the credentials which the user has provided to authenticate
 	- <span style="color:#d4a216">Represent the currently authenticated user</span> --> So you can obtain the current Authentication from the `SecurityContext`
@@ -224,7 +224,7 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
   >
 { #Authentication-Implementing-Classes}
 
-##### GrantedAuthority
+##### 2.3.2.4 GrantedAuthority
 - Có thể hiểu là label gán nhãn quyền hạn của người đăng nhập đối với app
 - Obtain `GrantedAuthority` instances from the `Authentication.getAuthorities()` method - this method provides a Collection of `GrantedAuthority` objects.
 	```Java
@@ -250,7 +250,7 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 - 🍎 Learn more: [Introduction to Spring Method Security](https://www.baeldung.com/spring-security-method-security)
 - When using username/password based authentication then  `GrantedAuthority` instances are usually loaded by the [`UserDetailsService`](https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/user-details-service.html#servlet-authentication-userdetailsservice)
 - <span style="color:#81ed0c">Usually, the GrantedAuthority Objects are application-wide permissions - they are not specific to a given domain object</span>
-##### AuthenticationManager
+##### 2.3.2.5 AuthenticationManager
 - Is the API - defines how SprSe's Filters perform authentication process to build `Authentication` obj - this means that the  `AuthenticationManager` help to specify which Authentication Mechanism is used for authentication
   - > [!NOTE]
    > Because there are various Authentication mechanisms or can call as Authentication Provider for implementation to authenticate the obj `Authentication`, for ex: 
@@ -264,7 +264,7 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 
 - The `Authentication` obj that is returned after the process of authentication done (do not care the user valid or invalid) is then set on the [SecurityContextHolder](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html#servlet-authentication-securitycontextholder) by the controller that invoked the `AuthenticationManager`
 - <span style="color:#d4a216">Because the `AuthenticationManager` is an interface -> the implementation of it could be anything. The most common implementation is `ProviderManager`</span>
-##### ProviderManager
+##### 2.3.2.6 ProviderManager
 - `ProviderManager` - the most commonly used <span style="color:#d4a216">implementation of</span> `AuthenticationManager`
 - <span style="color:#d4a216">`ProviderManager` delegates to a List of `AuthenticationProvider` instances</span>
 - ![](https://docs.spring.io/spring-security/reference/_images/servlet/authentication/architecture/providermanager.png)
@@ -278,31 +278,31 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 	 ![](https://i.imgur.com/E4vaBOj.png)
 	-  Multiple `ProviderManager` instances might share the same parent `AuthenticationManager` - this is somewhat common in scenarios where there are <span style="color:#d4a216">multiple `SecurityFilterChain` instances have some authentication in common</span> but can also <span style="color:#d4a216">different authetication mechanisms</span> (the different ProviderManager instances)
 - Default, <span style="color:#81ed0c">`ProviderManager` tries to clear any sensitive credentials information from the Authentication obj which is returned by a successful authentication request</span> -> avoid being retained longer than necessary in the `HttpSession` --> But can cause issues when use a cache of user objects (for ex to improve performance in a stateless application)
-##### AuthenticationProvider
+##### 2.3.2.7 AuthenticationProvider
 - Can inject mutiples `AuthenticationProviders` instances into ProviderManager
 - Each `AuthenticationProviders` performs a specific type of authentication
 - Ex: 
 	- DaoAuthenticationProvider supports username/password-based authentication
 	- `JwtAuthenticationProvider` supports authenticating a JWT token
 - Another existing AuthenticationProviders which Spre Support [[Software Knowledges/Programming Language/Java/Java Framework/Java Spring Security/Spring Security 6.2.0#^Authentication-Providers\|#^Authentication-Providers]]
-##### Request Credentials with AuthenticationEntryPoint
+##### 2.3.2.8 Request Credentials with AuthenticationEntryPoint
 - This is used to send an HTTP response that requests credentials from a client
 - If the request is to a resource -> SprSe does not need to provide HTTP response that requests credentials from the client (since they are already included)
 - <span style="color:#d4a216">Another case to show the useful of Request Credentials with `AuthenticationEntryPoint` is that when a client makes an unauthenticated request to a resource -> the are not authorized to access -> an implementation of `AuthenticationEntryPoint` is used to request back the credentials from the client by how -> it might perform a redirect to a login page and respond with an [WWW-Authenticate](https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/basic.html#servlet-authentication-basic) header, or take other action</span>.
-##### AbstractAuthenticationProcessingFilter
+##### 2.3.2.9 AbstractAuthenticationProcessingFilter
 - It is used as a base Filter for authenticating a user's credentials
 - Before the credentials can be authenticated --> SprSe typically requests the CREDENTIALS by using `AuthenticationEntryPoint` (in the case request to the resource but not login)
 - If the credentials of client exists -> the `AbstractAuthenticationProcessingFilter` can authenticate any authentication requests that are submitted to it
 - [![](https://i.imgur.com/LSFK7AQ.png)](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html#servlet-authentication-abstractprocessingfilter)
 
-### Authorization
+### 2.4 Authorization
 <span style="color:#91819c">This section concentrates to configure your application's authorization rules</span>
 - Consider attaching authorization rules to request URIs and methods
 - Consider how Spring Security authorization works
 - Describes the SprSe architecture that applies to authorization
 - Authorities
 	- Authentication has referred that all the implementations of Authentication Interface <span style="color:#d4a216"> store a list of `GrantedAuthority` objects</span> - represent the authorities (quyền hạn) that have been granted to the principal
-	- The `GrantedAuthority` objects -> <span style="color:#d4a216">inserted into the Authentication obj by the `AuthenticationManager`</span> & are later <span style="color:#d4a216">read by `AccessDecisionManager` instances when making authorization decisions</span>
+	- 2.4.1 The `GrantedAuthority` objects -> <span style="color:#d4a216">inserted into the Authentication obj by the `AuthenticationManager`</span> & are later <span style="color:#d4a216">read by `AccessDecisionManager` instances when making authorization decisions</span>
 	    ![](https://i.imgur.com/a1AVLqW.png)
 	    ![](https://i.imgur.com/deoduir.png)
 	  > [!Note] Method `String getAuthority();`
@@ -314,7 +314,7 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 	  > ==> any AuthorizationManager want to support the specific GrantedAuthority (for ex: for role USER || ADMIN retrieve from the list which contain both USER, ADMIN) -> need to support the specific `GrantedAuthority` implementation (for example: implementing classes `OAuth2UserAuthority`, `OcidcUserAuthority`,..) to understand its "complex" contents
 		- <span style="color:#d4a216">RESOVE HOW ?</span>
 		   - SprSe includes one concrete `GrantedAuthority` implementation: `SimpleGrantedAuthority` --> this implementation lets any user-specified `String` be converted into a `GrantedAuthority` (sẽ kiểu đọc từ danh sách các role, lấy ra một role và convert sang Sring). All `AuthenticationProvider` instances included with the security architecture use `SimpleGrantedAuthority` to populate the `Authentication` object.
-			- <span> style="color:#555555">**Configuration:** </span> 
+			- <span style="color:#555555">**Configuration:** </span> 
 			 ``` Java
 			  public class MyDatabaseUserDetailsService implements UserDetailsService {
 			    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -324,7 +324,7 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 			    }
 			  }
 			  ```
-	- <span style="color:#555555">The Invocation Handling - Handle the spring security exceptions</span>
+	- 2.4.2 <span style="color:#555555">The Invocation Handling - Handle the spring security exceptions</span>
 		- <span style="color:#555555">**SprSe provides interceptors** (sự chen giữa/chen ngang) --> that control access to secure (such as method invocations or web request)</span> 
 		- <span style="color:#555555">**A pre-invocation** decision on whether the invocation is allowed to proceed - this is made by `AuthorizationManager` instances</span>
 		- <span style="color:#555555">**A post-invocation** decisions on whether a given value may be returned - this is made by `AuthorizationManager` instances</span>
@@ -419,3 +419,31 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 	       > - [Spring Security: Custom Access Decision Voter](https://blog.jdriven.com/2019/10/spring-security-custom-access-decision-voter/)
 	       >> [!Caution]  
 	       >> `AccessDecisionVoter` and `AccessDecisionManager` are not recommend to use, instead you should use `AuthorizationManager` above, this section is included for historical purpose
+	<span style="color:#00b050">AND CONTIUNUE...</span>
+
+- <span style="color:#00b050">Customizing the Access Token Request</span>
+		- If you need to customize the pre-processing of the Token Request --> you can provide `DefaultAuthorizationCodeTokenResponseClient.setRequestEntityConverter()` with a custom `Converter<OAuth2AuthorizationCodeGrantRequest, RequestEntity<?>>`
+		- The default implementation (OAuth2AuthorizationCodeGrantRequestEntityConverter) builds a `RequestEntity` - which representation representation of a standard [OAuth 2.0 Access Token Request](https://tools.ietf.org/html/rfc6749#section-4.1.3)
+		- To customize only the parameters of the request --> you can provide `OAuth2AuthorizationCodeGrantRequestEntityConverter.setParametersConverter()` with a custom `Converter<OAuth2AuthorizationCodeGrantRequest, MultiValueMap<String, String>>`
+		- To only add additional parameters --> you can provide `OAuth2AuthorizationCodeGrantRequestEntityConverter.addParametersConverter()` with a custom `Converter<OAuth2AuthorizationCodeGrantRequest, MultiValueMap<String, String>>`
+			---
+			<span style="color:#d4a216">Reference :</span>
+			 - 🍎 [Custom Token Request](https://www.baeldung.com/spring-security-custom-oauth-requests#token)
+		
+	- <span style="color:#00b050">Customizing the Access Token Response</span>
+		-   If you need to customize the post-handling of the Token Response --> you need to provide `DefaultAuthorizationCodeTokenResponseClient.setRestOperations()` with a custom configured `RestOperations`   
+		- The default `RestOperations` is configured as follows: 
+			```Java
+			RestTemplate restTemplate = new RestTemplate(Arrays.asList(
+					new FormHttpMessageConverter(),
+					new OAuth2AccessTokenResponseHttpMessageConverter()));	
+			restTemplate.setErrorHandler(new OAuth2ErrorResponseErrorHandler());		 
+	        ```
+		- `FormHttpMessageConverter` - is required since it is used when sending the OAuth 2.0 Access Token Request.
+		- `OAuth2AccessTokenResponseHttpMessageConverter` - is an `HttpMessageConverter` for an OAuth 2.0 Access Token Response ---> <span style="color:#00b0f0">You can provide `OAuth2AccessTokenResponseHttpMessageConverter.setAccessTokenResponseConverter()` with a custom `Converter<Map<String, Object>, OAuth2AccessTokenResponse>` that is used for converting the OAuth 2.0 Access Token Response parameters to an `OAuth2AccessTokenResponse`</span>
+		- `OAuth2ErrorResponseErrorHandler` - a `ResponseErrorHandler` that can handle an OAuth 2.0 Error, such as `400 Bad Request` +  It uses an `OAuth2ErrorHttpMessageConverter` for converting the OAuth 2.0 Error parameters to an `OAuth2Error`
+		- An template to follow for customization `DefaultAuthorizationCodeTokenResponseClient` || provide your own implementation of `OAuth2AccessTokenResponseClient` [See](https://docs.spring.io/spring-security/reference/servlet/oauth2/client/authorization-grants.html#_customizing_the_access_token_response)
+			--- 
+			<span style="color:#d4a216">Reference :</span> 
+		- 🍎 [Customize the response of token endpoint and the token claims in Spring-Authorization-Server](https://sendoh-daten.medium.com/customize-the-response-of-token-endpoint-and-the-token-claims-in-spring-authorization-server-316e52e6ea82)
+		- 🍎 [Custom Token Response Handling](https://www.baeldung.com/spring-security-custom-oauth-requests#tokenRes)
