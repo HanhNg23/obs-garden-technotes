@@ -401,7 +401,9 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
    > [!Info] `AccessDecisionManger` and `AccessDecisionVoter`
 { #AccessDecisionManager-and-AccessDecisionVoter}
 
-		- > [!Info] `AccessDecisionManger`
+		
+	- > [!Info] `AccessDecisionManger`
+
          > - The `AccessDecisionManager` is called by the `AbstractSecurityInterceptor` 
 		  > - <span style="color:#d4a216">Responsible for making final access control decisions</span>.
 		  > - It is an interface, contains 3 methods:
