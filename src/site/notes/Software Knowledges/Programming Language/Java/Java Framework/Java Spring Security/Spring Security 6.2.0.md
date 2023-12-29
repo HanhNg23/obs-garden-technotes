@@ -252,7 +252,7 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 - <span style="color:#81ed0c">Usually, the GrantedAuthority Objects are application-wide permissions - they are not specific to a given domain object</span>
 ##### AuthenticationManager
 - Is the API - defines how SprSe's Filters perform authentication process to build `Authentication` obj - this means that the  `AuthenticationManager` help to specify which Authentication Mechanism is used for authentication
-  > [!NOTE]
+  - > [!NOTE]
    > Because there are various Authentication mechanisms or can call as Authentication Provider for implementation to authenticate the obj `Authentication`, for ex: 
    > ![](https://i.imgur.com/0K05mXr.png)
    > *<span style="font-style:italic; color:#d4a216">You can also create your own custom Authentication Provider</span>*
