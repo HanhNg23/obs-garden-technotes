@@ -154,7 +154,8 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 	   -  <span style="color:#555555">AbstractAuthenticationProcessingFilter</span>
 #### Part 2 - Authentication Architecture
 - ![](https://i.imgur.com/aWbkAYo.png)
-- [![](https://i.imgur.com/LSFK7AQ.png)](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html#servlet-authentication-abstractprocessingfilter)
+- ![](https://i.imgur.com/LSFK7AQ.png)
+   [🍎 Link](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html#servlet-authentication-abstractprocessingfilter)
 - ![](https://i.imgur.com/yDpbklX.png)
 ##### SecurityContextHolder
 - `SecurityContextHolder` - the heart of Spring Security's authentication model 
@@ -249,7 +250,6 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 - 🍎 Learn more: [Introduction to Spring Method Security](https://www.baeldung.com/spring-security-method-security)
 - When using username/password based authentication then  `GrantedAuthority` instances are usually loaded by the [`UserDetailsService`](https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/user-details-service.html#servlet-authentication-userdetailsservice)
 - <span style="color:#81ed0c">Usually, the GrantedAuthority Objects are application-wide permissions - they are not specific to a given domain object</span>
-  > If you would likely have 
 ##### AuthenticationManager
 - Is the API - defines how SprSe's Filters perform authentication process to build `Authentication` obj - this means that the  `AuthenticationManager` help to specify which Authentication Mechanism is used for authentication
 - > [!NOTE]
@@ -270,10 +270,10 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 - <span style="color:#d4a216">`ProviderManager` delegates to a List of `AuthenticationProvider` instances</span>
 - ![](https://docs.spring.io/spring-security/reference/_images/servlet/authentication/architecture/providermanager.png)
 - > [!Info] About `AuthenticationProvider`
-	- > Each `AuthenticationProvider` has an <span style="color:#d4a216">opportunity to indicate</span> that authentication should be successfull || fail || indicate it cannot make a decision -> then allow a downstream  `AuthenticationProvider` to decide
-	- > If none of the configured `AuthenticationProvider` instances can authenticate -> <span style="color:#d4a216">authentication fails with exception</span> `ProviderNotFoundException` (mean - `AuthenticationException` indicates the `ProviderManager` was not configured to support the [[Software Knowledges/Programming Language/Java/Java Framework/Java Spring Security/Spring Security 6.2.0#^Authentication-Implementing-Classes\|type of Authentication]] that was passed into it)
-	- > Each `AuthenticationProvider` knows how to perform a specific type of authentication
-		- > For ex, one `AuthenticationProvider` might be able use to validate a username/password (like `DaoAuthenticationProvider`) but another might be able to authenticate a SAML assertion (like )
+   > - Each `AuthenticationProvider` has an <span style="color:#d4a216">opportunity to indicate</span> that authentication should be successfull || fail || indicate it cannot make a decision -> then allow a downstream  `AuthenticationProvider` to decide
+	> - If none of the configured `AuthenticationProvider` instances can authenticate -> <span style="color:#d4a216">authentication fails with exception</span> `ProviderNotFoundException` (mean - `AuthenticationException` indicates the `ProviderManager` was not configured to support the [[Software Knowledges/Programming Language/Java/Java Framework/Java Spring Security/Spring Security 6.2.0#^Authentication-Implementing-Classes\|type of Authentication]] that was passed into it)
+	> - Each `AuthenticationProvider` knows how to perform a specific type of authentication
+    > For ex, one `AuthenticationProvider` might be able use to validate a username/password (like `DaoAuthenticationProvider`) but another might be able to authenticate a SAML assertion (like )
 - `ProviderManager` also allows configuring an optional parent `AuthenticationManager`
 	- The parent can be any type of `AuthenticationManager`, but it is often an instance of `ProviderManager`
 	 ![](https://i.imgur.com/E4vaBOj.png)
