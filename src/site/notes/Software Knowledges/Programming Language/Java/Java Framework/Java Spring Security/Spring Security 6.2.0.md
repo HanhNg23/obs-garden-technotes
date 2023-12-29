@@ -55,3 +55,9 @@ As a framework, Spring Security provides support security in 3 aspects : Authent
 
 
 
+
+## Servlet Application
+Spring Security integrates with the Servlet Container by using a standard `Servlet Filter` --> can work with any application runs in a Servlet Container
+- Servlet Container
+  > [!INFO] Servlet Container
+   > [![](https://i.imgur.com/RBkQLnG.png)](https://www.baeldung.com/java-servlets-containers-intro)
