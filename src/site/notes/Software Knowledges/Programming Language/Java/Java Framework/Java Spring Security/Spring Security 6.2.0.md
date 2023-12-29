@@ -102,3 +102,37 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 	- For <span style="color:#d4a216">Authentication</span> + need <span style="color:#d4a216">authentication stateful || stateless</span>
 	- For <span style="color:#d4a216">Authorization</span> 
 	- <span style="color:#d4a216">Defense</span> - SprSe support defaults protections + additional protection you need
+### Architecture
+- Discusses SprSe's high-level architecture within Servlet based applications
+#### A review of Servlet Filters
+- The filters is really powerful in helping SprSe building a secure Servlet Application
+	- Java Servlet Filter
+	> [!INFO] [Reference Link](https://openplanning.net/10395/java-servlet-filter)
+	>
+	>![](https://i.imgur.com/Hagt6IX.png)
+	>![](https://i.imgur.com/xYYQKQP.png)
+	>![](https://i.imgur.com/LCr9Tep.png)
+ <span style="color:#d7771d"> -> SprSe support Servlet security based on Servlet Filters</span>.
+ ![](https://i.imgur.com/NglrX3O.png)
+ > Figure FilterChain - shows the typical layering of the handlers for a single HTTP request
+  ---
+- Explain flow working
+	 - Client sends a request to the application
+	 - Container creates a `FilterChain` - which contains the <span style="color:#d7771d">`Filter` instances and Servlet</span> (indicated by the `DispatcherServlet` based on the path of the request `URI`) to process the coming `HttpServletRequest`
+		>- Servlet is an instance of [`DispatcherServlet`](https://docs.spring.io/spring-framework/docs/6.1.0/reference/html/web.html#mvc-servlet) 
+		>- Servlet is a class which responsible for accepting a request, processing it, and sending a response back -> handles a single `HttpServletRequest` and `HttpServletResponse`
+	- `Filter` comes to the picture with its <span style="color:#d7771d">power comes from the `FilterChain`</span> that where `filter` is passed into it, by using this power we can
+		- **Prevent downstream** `Filter` instances or the Servlet from being invoked. (The Filter in this case typically  writes the `HttpServletResponse`)
+		- **Modify** the `HttpServletRequest` or `HttpServletResponse` used by the downstream `Filter` instances and the `Servlet`.
+	- > [!Note] Note
+	  > Since a filter in advance impacts only downstream Filter (For ex : Filter 2 can be impact by Filter 1, Filter 3 can be impact Filter 2, Filter 1 can disrupt results in Filter 3, but directly to Filter 2)
+	  >> [!Attention]
+	  >> The order in which each Filter is invoked is extremely important
+- Usage FilterChain example
+	``` Java
+		public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
+		// do something before the rest of the application
+	    chain.doFilter(request, response); // invoke the rest of the application
+	    // do something after the rest of the application
+	}
+	```
