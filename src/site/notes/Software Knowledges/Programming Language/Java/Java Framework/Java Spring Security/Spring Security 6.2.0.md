@@ -402,18 +402,18 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 { #AccessDecisionManager-and-AccessDecisionVoter}
 	
 	> [!Info] `AccessDecisionManger`
-         > - The `AccessDecisionManager` is called by the `AbstractSecurityInterceptor` 
-		  > - <span style="color:#d4a216">Responsible for making final access control decisions</span>.
-		  > - It is an interface, contains 3 methods:
-		  >	```Java
-		  >	void decide(Authentication authentication, Object securedObject, Collection<ConfigAttribute> attrs) throws AccessDeniedException;		
-		  >	boolean supports(ConfigAttribute attribute);	
-		  >	boolean supports(Class clazz);
-		  >	```
-		  > - The decide` method is passed all the relevant information it needs - (information are "authentication obj", the "secured object", the configuration attributes associated with the "secured object" being invoked) ---> to <span style="color:#d4a216">make an authorization decision</span>
-		  > - `The supports(ConfigAttribute)` method is called by the `AbstractSecurityInterceptor` at startup time ---> <span style="color:#d4a216">determine if the `AccessDecsionManager` can process the passed `ConfigAttribute`</span>.
-		  >	- `The suports(Class)` method - called by a security interceptor implementation to <span style="color:#d4a216">ensure the configured `AccessDecisionManager` supports the type of secure object </span>that the security interceptor presents
-		  >	- <span style="color:#81ed0c">But this has been `Deprecated`, the replacement is `AuthorizationManager`</span>
+    > - The `AccessDecisionManager` is called by the `AbstractSecurityInterceptor` 
+	> - <span style="color:#d4a216">Responsible for making final access control decisions</span>.
+	> - It is an interface, contains 3 methods:
+	>	```Java
+	>	void decide(Authentication authentication, Object securedObject, Collection<ConfigAttribute> attrs) throws AccessDeniedException;		
+	>	boolean supports(ConfigAttribute attribute);	
+	>	boolean supports(Class clazz);
+	>	```
+	> - The decide` method is passed all the relevant information it needs - (information are "authentication obj", the "secured object", the configuration attributes associated with the "secured object" being invoked) ---> to <span style="color:#d4a216">make an authorization decision</span>
+	> - `The supports(ConfigAttribute)` method is called by the `AbstractSecurityInterceptor` at startup time ---> <span style="color:#d4a216">determine if the `AccessDecsionManager` can process the passed `ConfigAttribute`</span>.
+	>	- `The suports(Class)` method - called by a security interceptor implementation to <span style="color:#d4a216">ensure the configured `AccessDecisionManager` supports the type of secure object </span>that the security interceptor presents
+	>	- <span style="color:#81ed0c">But this has been `Deprecated`, the replacement is `AuthorizationManager`</span>
 		
 		- > [!Info] `AccessDecisionVoter` - Voting-Based `AccessDecisionManager` Implementations
 			> - While users can implement their own `AccessDecisionManager` to control all aspects (liên quan khái niệm AOP - [Aspect Oriented Programming with Spring](https://docs.spring.io/spring-framework/reference/core/aop.html) ) of authorization.
