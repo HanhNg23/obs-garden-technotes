@@ -295,7 +295,4 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 - If the credentials of client exists -> the `AbstractAuthenticationProcessingFilter` can authenticate any authentication requests that are submitted to it
 - [![](https://i.imgur.com/LSFK7AQ.png)](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html#servlet-authentication-abstractprocessingfilter)
 
-### Authorization
-<span style="color:#91819c">- This section concentrates to configure your application's authorization rules
-- Consider attaching authorization rules to request URIs and methods
-- Consider how Spring Security authorization works</span>
+
