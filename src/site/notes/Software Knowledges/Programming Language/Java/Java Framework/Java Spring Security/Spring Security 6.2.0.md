@@ -155,7 +155,7 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 #### Part 2 - Authentication Architecture
 - ![](https://i.imgur.com/aWbkAYo.png)
 - ![](https://i.imgur.com/LSFK7AQ.png)
-   [🍎 Link](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html#servlet-authentication-abstractprocessingfilter)
+   [🍎 Source 👆](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html#servlet-authentication-abstractprocessingfilter)
 - ![](https://i.imgur.com/yDpbklX.png)
 ##### SecurityContextHolder
 - `SecurityContextHolder` - the heart of Spring Security's authentication model 
@@ -295,3 +295,155 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 - Before the credentials can be authenticated --> SprSe typically requests the CREDENTIALS by using `AuthenticationEntryPoint` (in the case request to the resource but not login)
 - If the credentials of client exists -> the `AbstractAuthenticationProcessingFilter` can authenticate any authentication requests that are submitted to it
 - [![](https://i.imgur.com/LSFK7AQ.png)](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html#servlet-authentication-abstractprocessingfilter)
+
+### Authorization
+<span style="color:#91819c">This section concentrates to configure your application's authorization rules
+- Consider attaching authorization rules to request URIs and methods
+- Consider how Spring Security authorization works</span>
+#### Authorization Architecture
+- Describes the SprSe architecture that applies to authorization
+- Authorities
+	- Authentication has referred that all the implementations of Authentication Interface  <span style="color:#d4a216"> store a list of `GrantedAuthority` objects</span> - represent the authorities (quyền hạn) that have been granted to the principal
+	- The `GrantedAuthority` objects -> <span style="color:#d4a216">inserted into the Authentication obj by the `AuthenticationManager`</span> & are later <span style="color:#d4a216">read by `AccessDecisionManager` instances when making authorization decisions</span>
+	    ![](https://i.imgur.com/a1AVLqW.png)
+	    ![](https://i.imgur.com/deoduir.png)
+	- > [!Note] Method `String getAuthority();`
+	  > This method is used by an `AuthorizationManager` instance to obtain a precise **String** **representation of the `GrantedAuthority`**-> this String - a `GrantedAuthority` (thằng đại diện cho thằng này là cái string được trả về từ `String getAuthority();`) can be "read" easily by most `AuthorizationManager` implementations
+	- > [!Caution] String is null
+	  > If a `GrantedAuthority` cannot be precisely represented as a String - be considered "complex" -> `getAuthority()`will be must return null.
+	  > the "complex" of `GrantedAuthority` would be an implementation that stores a List of operations and authority thresholds(for example, instead contains one Role, the implementation stores a list different roles) --> representing this complex GrantedAuthority as a String (this refer have to read the array) would be DIFFICULT --> As a result, the getAuthority() method should return null.
+	  > ==> any AuthorizationManager want to support the specific GrantedAuthority (for ex: for role USER || ADMIN retrieve from the list which contain both USER, ADMIN) -> need to support the specific `GrantedAuthority` implementation (for example: implementing classes `OAuth2UserAuthority`, `OcidcUserAuthority`,..) to understand its "complex" contents.
+	  > 	
+	  <span style="color:#d4a216">RESOVE HOW ?</span>
+	   <span style="color:#555555">SprSe includes one concrete `GrantedAuthority` implementation: `SimpleGrantedAuthority` --> this implementation lets any user-specified `String` be converted into a `GrantedAuthority` (sẽ kiểu đọc từ danh sách các role, lấy ra một role và convert sang Sring). All `AuthenticationProvider` instances included with the security architecture use `SimpleGrantedAuthority` to populate the `Authentication` object</span>
+	   *<span style="color:#555555">Configuration:</span>*  
+		``` Java
+		   public class MyDatabaseUserDetailsService implements UserDetailsService {
+		    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		       User user = userDao.findByUsername(username);
+		       List<SimpleGrantedAuthority> grantedAuthorities = user.getAuthorities().map(authority -> new SimpleGrantedAuthority(authority)).collect(Collectors.toList()); // (1)
+		       return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities); // (2)
+		    }
+		  }
+		  ```
+	- 🍎 Reference: [Authorities](https://docs.spring.io/spring-security/reference/servlet/authorization/architecture.html#authz-authorities)
+- The Invocation Handling - Handle the spring security exceptions
+	- <span style="color:#555555">**SprSe provides interceptors** (sự chen giữa/chen ngang) --> that control access to secure (such as method invocations or web request). </span>
+	- <span style="color:#555555">**A pre-invocation** decision on whether the invocation is allowed to proceed - this is made by `AuthorizationManager` instances</span>
+	- <span style="color:#555555">**A post-invocation** decisions on whether a given value may be returned - this is made by `AuthorizationManager` instances</span>
+	- <span style="color:#81ed0c">So, what is `AuthorizationManager` and how it make access control decision</span>
+	---
+	- The `AuthorizationManger` - what is ?
+		- `AuthorizationManager` supersedes both `AccessDecisionManger` and `AccessDecisionVoter`([[Software Knowledges/Programming Language/Java/Java Framework/Java Spring Security/Spring Security 6.2.0#^AccessDecisionManager-and-AccessDecisionVoter\|#^AccessDecisionManager-and-AccessDecisionVoter]])
+		- > [!Caution]
+		 <span style="color:#555555">Applications that customize an `AccessDecsionManager` or `AccessDecisionVoter` need to change to use `AuthorizationManager` (because from Spr 6.0.0 the `AccessDecisionManager` has been deprecated) </span>
+		- `AuthorizationManager`s **are called by SprSe's** 
+			-  <span style="color:#ff0000">request based authorization - Authorize `HttpServletRequests`</span>
+			-  <span style="color:#ff0000">method-based authorization - Method Security</span> 
+			- <span style="color:#ff0000"> message-based authorization - WebSocket Security</span>
+		- `AuthorizationManager` are responsible for making final access control decisions. 
+		- The interface contains two methods
+		```java
+		AuthorizationDecision check(Supplier<Authentication> authentication, Object secureObject);
+		
+		default AuthorizationDecision verify(Supplier<Authentication> authentication, Object secureObject)
+		        throws AccessDeniedException {
+		    // ...
+		}
+		```
+		 - `check` method is passed all the relevant information it needs in order to make an authorization decision - information: authentication, secured object
+			 - the `check` method in implementations (các class triển khai `AuthorizationDecision`) expected return 
+				 - POSITIVE `AuthorizationDecision` access is GRANTED
+				 - NEGATIVE `AuthorizationDecision` access is DENIED
+				 - NULL `AuthorizationDecision` decision is ABSTAIN
+				 > (compare to `AccessDecisionVoter` which the implementations vote method return 3 kind of static field name: ACCESS_ABSTAIN, ACCESS_GRANTED, ACCESS_DENIED - [[Software Knowledges/Programming Language/Java/Java Framework/Java Spring Security/Spring Security 6.2.0#^AccessDecisionVoter-static-fields-named\|#^AccessDecisionVoter-static-fields-named]])
+		- `verify` method call check, throw `AccessDeniedException` when check method return NEGATIVE `AuthorizationDecision`
+	- Delegate-based `AuthorizationManager` Implementations - how does ?
+		- > To help `AuthorizationManager` to control access decision --> this interface has its own a composition(tổ hợp) of `AuthorizationManager` implementations in the following picture here:  
+		- ![](https://i.imgur.com/ybFnvs4.png)
+		- ![](https://i.imgur.com/iUbDgaM.png)
+		- SprSe ships with a delegating `AuthorizationManager` - collaborate with individual `AuthorizationManager`s
+		- <span style="color:#d4a216">Match request</span> - `RequestMatcherDelegatingAuthorizationManager` - an implementation of `AuthorizationManager` interface --> match the request with the most appropriate delegate `AuthorizationManager` (delegates to a specific [`AuthorizationManager`](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authorization/AuthorizationManager.html "interface in org.springframework.security.authorization") based on a [`RequestMatcher`](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/util/matcher/RequestMatcher.html "interface in org.springframework.security.web.util.matcher") evaluation)
+		- <span style="color:#d4a216">Method Security</span> - can use 
+			- `AuthorizationManagerBeforeMethodInterceptor` - A `MethodInterceptor` which uses a `AuthorizationManager` to determine if an `Authentication` may invoke the given `MethodInvocation` (the method that is assigned for specific authority - ex: a function only allow role admin)
+			- `AuthorizationManagerAfterMethodInterceptor`- A MethodInterceptor which can determine if an Authentication has access to the result of an MethodInvocation using an AuthorizationManager
+			> The mechanic that Method Security - these interceptors apply is the AOP - [Aspect Oriented Programming with Spring](https://docs.spring.io/spring-framework/reference/core/aop.html)
+			- 🍎 Reference: [Method Security](https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html)
+		- AuthorityAuthorizationManager - [See](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authorization/AuthorityAuthorizationManager.html)
+			- > An AuthorizationManager that determines if the current user is authorized by evaluating if the Authentication contains a specified authority.
+			- > Return positive `AuthorizationDecision` should the `Authentication` contain any of the configured authorities (authorities which specified during the configuration by `@Secured({ "ROLE_VIEWER", "ROLE_EDITOR" })`, `@RolesAllowed("ROLE_VIEWER")` annotations for ex). It will return a negative `AuthorizationDecision` otherwise.
+		- AuthenticatedAuthorizationManager - [See](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authorization/AuthenticatedAuthorizationManager.html)
+			- > An AuthorizationManager that determines if the current user is authenticated.
+			- > Can be used to differentiate between anonymous, fully-authenticated and remember-me authenticated users.
+	- Custom Authorization Manager
+		- > The purpose of Authentication Manager is given the approach to make decision access on authenticated user base on it's authorities(roles)
+		- > 🍎 Reference: [Custom Authorization with Spring Boot](https://insource.io/blog/articles/custom-authorization-with-spring-boot.html)
+	- Hierarchical Roles
+		- requirement that a particular role in an application should automatically "include" other roles.
+		- The use of a role-hierarchy allows you to configure which roles (or authorities) should include others.
+		-  An extended version of Spring Security’s `RoleVoter`, `RoleHierarchyVoter`, is configured with a `RoleHierarchy`, from which it obtains all the "reachable authorities" which the user is assigned.
+		- <span style="color:#91819c">Confiugration: Hierarchical Roles Configuration</span>
+			``` Java
+				@Bean
+			static RoleHierarchy roleHierarchy() {
+			    RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
+			    hierarchy.setHierarchy("ROLE_ADMIN > ROLE_STAFF\n" +
+			            "ROLE_STAFF > ROLE_USER\n" +
+			            "ROLE_USER > ROLE_GUEST");
+			    return hierarchy;
+			}
+			
+			// and, if using method security also add
+			@Bean
+			static MethodSecurityExpressionHandler methodSecurityExpressionHandler(RoleHierarchy roleHierarchy) {
+				DefaultMethodSecurityExpressionHandler expressionHandler = new DefaultMethodSecurityExpressionHandler();
+				expressionHandler.setRoleHierarchy(roleHierarchy);
+				return expressionHandler;
+			}	
+			```
+  - > [!Info] `AccessDecisionManger` and `AccessDecisionVoter`
+{ #AccessDecisionManager-and-AccessDecisionVoter}
+
+		- > [!Info] `AccessDecisionManger`
+         > - The `AccessDecisionManager` is called by the `AbstractSecurityInterceptor` 
+		  > - <span style="color:#d4a216">Responsible for making final access control decisions</span>.
+		  > - It is an interface, contains 3 methods:
+		  >	```Java
+		  >	void decide(Authentication authentication, Object securedObject, Collection<ConfigAttribute> attrs) throws AccessDeniedException;		
+		  >	boolean supports(ConfigAttribute attribute);	
+		  >	boolean supports(Class clazz);
+		  >	```
+		  > - The decide` method is passed all the relevant information it needs - (information are "authentication obj", the "secured object", the configuration attributes associated with the "secured object" being invoked) ---> to <span style="color:#d4a216">make an authorization decision</span>
+		  > - `The supports(ConfigAttribute)` method is called by the `AbstractSecurityInterceptor` at startup time ---> <span style="color:#d4a216">determine if the `AccessDecsionManager` can process the passed `ConfigAttribute`</span>.
+		  >	- `The suports(Class)` method - called by a security interceptor implementation to <span style="color:#d4a216">ensure the configured `AccessDecisionManager` supports the type of secure object </span>that the security interceptor presents
+		  >	- <span style="color:#81ed0c">But this has been `Deprecated`, the replacement is `AuthorizationManager`</span>
+		- > [!Info] `AccessDecisionVoter` - Voting-Based `AccessDecisionManager` Implementations
+			> - While users can implement their own `AccessDecisionManager` to control all aspects (liên quan khái niệm AOP - [Aspect Oriented Programming with Spring](https://docs.spring.io/spring-framework/reference/core/aop.html) ) of authorization.
+			> - Spring Security includes several `AccessDecisionManager` implementation are based on voting.
+			>  ![](https://i.imgur.com/Up3oQgo.png)
+			>  > The picture is Voting Decision Manager - describes the relevant classes
+			> - <span style="color:#91819c">By using this approach --> a series of `AccessDecisionVoter` implementations (like RoleVoter, AuthenticatedVoter, or your new CustomVoter,...) are polled on an authorization decision ---> then the `AccessDecisionManager` decides whether or not to throw an `AccessDeniedException` based on its assessment of the votes.</span>
+			>   ![](https://i.imgur.com/QIwNsvX.png)
+			> - Note that, the concrete/the voting implementations of `AccessDecisionVoter` interface have to return an int - with possible values being **reflected in the `AccessDecisionVoter` static fields named**:
+{ #AccessDecisionVoter-static-fields-named}
+
+			> 	- <span style="color:#91819c">ACCESS_ABSTAIN - A voting implementation returns this when if it has no opinion on an authorization decision</span>
+			> 	- <span style="color:#91819c">ACCESS_DENIED || ACCESS_GRANTED (1 of 2): A voting implementation returns either of them if it does have an opinion .</span>
+			> - In the picture, we can see that `AccessDecisionManager` has three concrete - regard as `AccessDecisionVoter` - to give the decision of access denied for current authentication obj: 
+			>   ![](https://i.imgur.com/Ky5VzlP.png)
+			>   - The `ConsensusBased` implementation grants or denies access based on the consensus of non-abstain votes (phiếu trắng)
+			>   - The `AffirmativeBased` implementation grants access if one or more `ACCESS_GRANTED` votes were received
+			>   - The `UnanimousBased` provider expects unanimous `ACCESS_GRANTED` votes in order to grant access, ignoring abstains.
+			> - 🍎 Reference
+			>   [Voting-Based AccessDecisionManager Implementations](https://docs.spring.io/spring-security/reference/servlet/authorization/architecture.html#authz-voting-based)
+			> - > [!Info] RoleVoter
+			>> - This treats configuration attributes as role names -> <span style="color:#d4a216">votes to grant access</span> if the user has been assigned that role
+			>> - It votes if any ConfigAttribute begins with the ROLE_ prefix
+			>> - It votes to grant access if there is `GrantedAuthority` 's representation return a String (from the `getAuthority()` method) exactly equal to one or more `ConfigAttributes` that that start with the ROLE_ prefix. If no -> vote to deny access, if `ConfigAttributes` begins with ROLE_ (not thing following) -> voter abstains. 
+			>>   ![](https://i.imgur.com/OwDw2Cf.png)
+			>> - 🍎 Reference: Custom Voters 
+			>> - [Custom AccessDecisionVoters in Spring Security](https://www.baeldung.com/spring-security-custom-voter)
+			>> - [Configuring Spring Boot’s Method Level Security To Check Only The Required Permission](https://medium.com/@adammcg97/configuring-spring-boots-method-level-security-to-use-a-non-cached-source-to-check-for-7df7317127d2)
+			>> - [Spring Security: Custom Access Decision Voter](https://blog.jdriven.com/2019/10/spring-security-custom-access-decision-voter/)
+		   > - > [!Caution]  
+		   > `AccessDecisionVoter` and `AccessDecisionManager` are not recommend to use, instead you should use `AuthorizationManager` above, this section is included for historical purpose
