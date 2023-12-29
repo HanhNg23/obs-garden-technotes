@@ -314,7 +314,7 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
 	  > ==> any AuthorizationManager want to support the specific GrantedAuthority (for ex: for role USER || ADMIN retrieve from the list which contain both USER, ADMIN) -> need to support the specific `GrantedAuthority` implementation (for example: implementing classes `OAuth2UserAuthority`, `OcidcUserAuthority`,..) to understand its "complex" contents
 		- <span style="color:#d4a216">RESOVE HOW ?</span>
 		   - SprSe includes one concrete `GrantedAuthority` implementation: `SimpleGrantedAuthority` --> this implementation lets any user-specified `String` be converted into a `GrantedAuthority` (sẽ kiểu đọc từ danh sách các role, lấy ra một role và convert sang Sring). All `AuthenticationProvider` instances included with the security architecture use `SimpleGrantedAuthority` to populate the `Authentication` object.
-			- span style="color:#555555">**Configuration:** </span> 
+			- <span> style="color:#555555">**Configuration:** </span> 
 			 ``` Java
 			  public class MyDatabaseUserDetailsService implements UserDetailsService {
 			    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
