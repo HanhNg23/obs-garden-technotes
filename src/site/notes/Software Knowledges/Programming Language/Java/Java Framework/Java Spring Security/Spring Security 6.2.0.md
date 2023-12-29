@@ -401,47 +401,47 @@ Spring Security integrates with the Servlet Container by using a standard `Servl
    > [!Info] `AccessDecisionManger` and `AccessDecisionVoter`
 { #AccessDecisionManager-and-AccessDecisionVoter}
 
-		>> [!Info] `AccessDecisionManger`
-         >> - The `AccessDecisionManager` is called by the `AbstractSecurityInterceptor` 
-		  >> - <span style="color:#d4a216">Responsible for making final access control decisions</span>.
-		  >> - It is an interface, contains 3 methods:
-		  >>	```Java
-		  >>	void decide(Authentication authentication, Object securedObject, Collection<ConfigAttribute> attrs) throws AccessDeniedException;		
-		  >>	boolean supports(ConfigAttribute attribute);	
-		  >>	boolean supports(Class clazz);
-		  >>	```
-		  >> - The decide` method is passed all the relevant information it needs - (information are "authentication obj", the "secured object", the configuration attributes associated with the "secured object" being invoked) ---> to <span style="color:#d4a216">make an authorization decision</span>
-		  >> - `The supports(ConfigAttribute)` method is called by the `AbstractSecurityInterceptor` at startup time ---> <span style="color:#d4a216">determine if the `AccessDecsionManager` can process the passed `ConfigAttribute`</span>.
-		  >>	- `The suports(Class)` method - called by a security interceptor implementation to <span style="color:#d4a216">ensure the configured `AccessDecisionManager` supports the type of secure object </span>that the security interceptor presents
-		  >>	- <span style="color:#81ed0c">But this has been `Deprecated`, the replacement is `AuthorizationManager`</span>
-        
-        >> [!Info] `AccessDecisionVoter` - Voting-Based `AccessDecisionManager` Implementations
-			>> - While users can implement their own `AccessDecisionManager` to control all aspects (liên quan khái niệm AOP - [Aspect Oriented Programming with Spring](https://docs.spring.io/spring-framework/reference/core/aop.html) ) of authorization.
-			>> - Spring Security includes several `AccessDecisionManager` implementation are based on voting.
-			>>  ![](https://i.imgur.com/Up3oQgo.png)
-			>> The picture is Voting Decision Manager - describes the relevant classes
-			>> - <span style="color:#91819c">By using this approach --> a series of `AccessDecisionVoter` implementations (like RoleVoter, AuthenticatedVoter, or your new CustomVoter,...) are polled on an authorization decision ---> then the `AccessDecisionManager` decides whether or not to throw an `AccessDeniedException` based on its assessment of the votes.</span>
-			>>   ![](https://i.imgur.com/QIwNsvX.png)
-			>> - Note that, the concrete/the voting implementations of `AccessDecisionVoter` interface have to return an int - with possible values being **reflected in the `AccessDecisionVoter` static fields named**:
+		- > [!Info] `AccessDecisionManger`
+         > - The `AccessDecisionManager` is called by the `AbstractSecurityInterceptor` 
+		  > - <span style="color:#d4a216">Responsible for making final access control decisions</span>.
+		  > - It is an interface, contains 3 methods:
+		  >	```Java
+		  >	void decide(Authentication authentication, Object securedObject, Collection<ConfigAttribute> attrs) throws AccessDeniedException;		
+		  >	boolean supports(ConfigAttribute attribute);	
+		  >	boolean supports(Class clazz);
+		  >	```
+		  > - The decide` method is passed all the relevant information it needs - (information are "authentication obj", the "secured object", the configuration attributes associated with the "secured object" being invoked) ---> to <span style="color:#d4a216">make an authorization decision</span>
+		  > - `The supports(ConfigAttribute)` method is called by the `AbstractSecurityInterceptor` at startup time ---> <span style="color:#d4a216">determine if the `AccessDecsionManager` can process the passed `ConfigAttribute`</span>.
+		  >	- `The suports(Class)` method - called by a security interceptor implementation to <span style="color:#d4a216">ensure the configured `AccessDecisionManager` supports the type of secure object </span>that the security interceptor presents
+		  >	- <span style="color:#81ed0c">But this has been `Deprecated`, the replacement is `AuthorizationManager`</span>
+		
+		- > [!Info] `AccessDecisionVoter` - Voting-Based `AccessDecisionManager` Implementations
+			> - While users can implement their own `AccessDecisionManager` to control all aspects (liên quan khái niệm AOP - [Aspect Oriented Programming with Spring](https://docs.spring.io/spring-framework/reference/core/aop.html) ) of authorization.
+			> - Spring Security includes several `AccessDecisionManager` implementation are based on voting.
+			>  ![](https://i.imgur.com/Up3oQgo.png)
+			>  > The picture is Voting Decision Manager - describes the relevant classes
+			> - <span style="color:#91819c">By using this approach --> a series of `AccessDecisionVoter` implementations (like RoleVoter, AuthenticatedVoter, or your new CustomVoter,...) are polled on an authorization decision ---> then the `AccessDecisionManager` decides whether or not to throw an `AccessDeniedException` based on its assessment of the votes.</span>
+			>   ![](https://i.imgur.com/QIwNsvX.png)
+			> - Note that, the concrete/the voting implementations of `AccessDecisionVoter` interface have to return an int - with possible values being **reflected in the `AccessDecisionVoter` static fields named**:
 { #AccessDecisionVoter-static-fields-named}
 
-			>> 	- <span style="color:#91819c">ACCESS_ABSTAIN - A voting implementation returns this when if it has no opinion on an authorization decision</span>
-			>> 	- <span style="color:#91819c">ACCESS_DENIED || ACCESS_GRANTED (1 of 2): A voting implementation returns either of them if it does have an opinion .</span>
-			>> - In the picture, we can see that `AccessDecisionManager` has three concrete - regard as `AccessDecisionVoter` - to give the decision of access denied for current authentication obj: 
-			>>   ![](https://i.imgur.com/Ky5VzlP.png)
-			>>   - The `ConsensusBased` implementation grants or denies access based on the consensus of non-abstain votes (phiếu trắng)
-			>>   - The `AffirmativeBased` implementation grants access if one or more `ACCESS_GRANTED` votes were received
-			>>   - The `UnanimousBased` provider expects unanimous `ACCESS_GRANTED` votes in order to grant access, ignoring abstains.
-			>> - 🍎 Reference
-			>>   [Voting-Based AccessDecisionManager Implementations](https://docs.spring.io/spring-security/reference/servlet/authorization/architecture.html#authz-voting-based)
-			>>> [!Info] RoleVoter
-			>>> - This treats configuration attributes as role names -> <span style="color:#d4a216">votes to grant access</span> if the user has been assigned that role
+			> 	- <span style="color:#91819c">ACCESS_ABSTAIN - A voting implementation returns this when if it has no opinion on an authorization decision</span>
+			> 	- <span style="color:#91819c">ACCESS_DENIED || ACCESS_GRANTED (1 of 2): A voting implementation returns either of them if it does have an opinion .</span>
+			> - In the picture, we can see that `AccessDecisionManager` has three concrete - regard as `AccessDecisionVoter` - to give the decision of access denied for current authentication obj: 
+			>   ![](https://i.imgur.com/Ky5VzlP.png)
+			>   - The `ConsensusBased` implementation grants or denies access based on the consensus of non-abstain votes (phiếu trắng)
+			>   - The `AffirmativeBased` implementation grants access if one or more `ACCESS_GRANTED` votes were received
+			>   - The `UnanimousBased` provider expects unanimous `ACCESS_GRANTED` votes in order to grant access, ignoring abstains.
+			> - 🍎 Reference
+			>   [Voting-Based AccessDecisionManager Implementations](https://docs.spring.io/spring-security/reference/servlet/authorization/architecture.html#authz-voting-based)
+			>> [!Info] RoleVoter
+			>> - This treats configuration attributes as role names -> <span style="color:#d4a216">votes to grant access</span> if the user has been assigned that role
 			>> - It votes if any ConfigAttribute begins with the ROLE_ prefix
 			>> - It votes to grant access if there is `GrantedAuthority` 's representation return a String (from the `getAuthority()` method) exactly equal to one or more `ConfigAttributes` that that start with the ROLE_ prefix. If no -> vote to deny access, if `ConfigAttributes` begins with ROLE_ (not thing following) -> voter abstains. 
-			>>>   ![](https://i.imgur.com/OwDw2Cf.png)
-			>> - 🍎 Reference: Custom Voters 
-			>> - [Custom AccessDecisionVoters in Spring Security](https://www.baeldung.com/spring-security-custom-voter)
-			>> - [Configuring Spring Boot’s Method Level Security To Check Only The Required Permission](https://medium.com/@adammcg97/configuring-spring-boots-method-level-security-to-use-a-non-cached-source-to-check-for-7df7317127d2)
-			>> - [Spring Security: Custom Access Decision Voter](https://blog.jdriven.com/2019/10/spring-security-custom-access-decision-voter/)
+			>>   ![](https://i.imgur.com/OwDw2Cf.png)
+			> - 🍎 Reference: Custom Voters 
+			> - [Custom AccessDecisionVoters in Spring Security](https://www.baeldung.com/spring-security-custom-voter)
+			> - [Configuring Spring Boot’s Method Level Security To Check Only The Required Permission](https://medium.com/@adammcg97/configuring-spring-boots-method-level-security-to-use-a-non-cached-source-to-check-for-7df7317127d2)
+			> - [Spring Security: Custom Access Decision Voter](https://blog.jdriven.com/2019/10/spring-security-custom-access-decision-voter/)
 		   >> [!Caution]  
-		   >> `AccessDecisionVoter` and `AccessDecisionManager` are not recommend to use, instead you should use `AuthorizationManager` above, this section is included for historical purpose
+		   > `AccessDecisionVoter` and `AccessDecisionManager` are not recommend to use, instead you should use `AuthorizationManager` above, this section is included for historical purpose
