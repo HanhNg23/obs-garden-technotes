@@ -739,3 +739,13 @@ Hàm là một object cần khái quát
 			//Tui click button mở rộng khả năng của tôi, chấp nhận xài hàm của anh em bên ngoài, tui button đưa hàm cho button tui đi, tui thay bạn gọi hàm thực thi cho
 			//Window kiểm soát click, gọi nút bấm click khi user nhấn nút, nút được windows đẩy chạy click
 		```
+
+## VIII. WINDOWS FORMS VÀ STYLE VIẾT CODE
+- Cách viết code hiện nay gọi là style ALL-IN-ONE (Nhét tất vào một chỗ)
+	- 1 project của 1 solution chứa toàn bộ form - UI - trong form chứa code xử lý sự kiện + chứa luôn data đứng sau form 
+	- 1 form của 1 project chứa vừa design & code, event & code data luôn
+> Nếu ta cần data không phải từ Ram mà là từ database SQLServer, code nên sửa ntn, All-In-One còn đủ tốt không
+> --> Không tốt vì code event trộn với code xử lý data (code nghiệp vụ khách hàng: không mượn quá 5 cuốn, tính giảm giá)
+> --> Không đủ tốt vì fix với SQLServer
+> --> Nếu Data không từ SQLServer mà từ MySQL, .... 
+> --> Code phải copy paste sang dự án khác, sửa - dân dev gặp nhiều ác mộng trong đó ác mộng maintain 2 app đồng thời SQLServer, MySQL. UI thì giống, DB khác, câu lệnh Select khác --> Dẫn tới tái sử dụng kém
