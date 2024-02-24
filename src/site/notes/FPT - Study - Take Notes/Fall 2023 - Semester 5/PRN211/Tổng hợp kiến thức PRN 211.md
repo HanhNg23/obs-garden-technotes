@@ -246,3 +246,236 @@
      - ![](https://i.imgur.com/g3w7KgH.jpg)
      > id là trong class Student là một biến static - là một biến được nhìn thấy trong toàn app. Việc trích xuất tới nó phải thông qua tên class Student và gọi tới biến.` Student.id`. Nếu có sự thay đối đối với biến static id --> đồng nghĩa sự thay đổi này sẽ được nhìn thầy trong toàn bộ app.  
      > Cụ thể - ta khởi tạo 2 object của Student là s1 và s2. Trong đó s1 đã set giá trị cho id = 1, vậy Student.id đang = 1, nhưng s2 set id = 2 --> hệ lụy là id thay đổi = 2 -- vì là biến static - được sử dụng chung --> Student1.id bị thay đổi thành 2
+## V. OOP - HƯỚNG ĐỐI TƯỢNG TRONG C# 
+- Class trong C# - *<span style="color:#91819c">giống Java và các ngôn ngữ OOP khác</span>*
+	- Tên class: Noun, Pascal Case
+	- Bên trong chứa các đặc tính / trạng thái / mô tả / state
+		* Gọi là : instance variable, backed-field, data-field
+   > vd: private int _yob; private string _name;
+ 	  * <span style="color:#659532">Nếu đặc tính ko có từ "private" mặc định hệ thống hiểu là private cho đặc tính</span>
+	 - Bên trong chứa các hành vi/behavior, method, function 
+		* Có thể public, private. Mặc định không nói gì là private
+
+#### 1. Kĩ thuật dùng PROPERTIES truy cập các đặc tính của class trong C# - [See]([](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties#properties-overview))
+ > Trong class, các thuộc tính/fieds của một object thường được khai báo với quyền truy cập là private - chỉ cho phép truy cập trực tiếp trong class. 
+ > --> Để cung cấp cơ chế đọc, ghi dữ liệu lên các thuộc tính private của một object 
+ > --> C# cung cấp kĩ thuật PROPERTIES (hoạt động tương tự như getter và setter) hỗ trợ việc truy cập các thuộc tính của object một cách dễ dàng, an toàn và linh hoạt. 
+ <span style="color:#d4a216">Có 3 kĩ thuật sử dụng đặc tính - properties của class</span>
+ 
+##### Kĩ thuật 1: Kĩ thuật truyền thống Java
+```CSharp
+	private string _name; //backed-fied
+	 
+	public string GetName() 
+	{
+		return  _name;
+	}
+	    
+	public string SetName(string name) 
+	{
+		this._name = name;
+	}
+```
+
+- <span style="color:#0070c0">Hoặc dùng Expression Body</span>
+
+```CSharp
+	public string GetName() => _name;
+	
+	public void SetName(String name) 
+	{
+		_name = name;
+	 }
+```
+			
+##### Kĩ thuật 2: Kĩ thuật truyền giống Java nhưng Getter, Setter dùng kĩ thuật mới<span style="color:#d4a216"> (Properties with backing fields)</span> 
+
+```CSharp
+	//ví dụ 1
+	private string _name; //backed field
+	
+	public string Name 
+	{
+		get {return _name; },
+		set {_name = value; }
+	}
+```
+
+```CSharp
+	//ví dụ 2
+	public class TimePeriod
+	{
+	    private double _seconds; //backed-fied
+	    public double Hours
+	    {
+	        get { return _seconds / 3600; }
+	        set
+	        {
+	            if (value < 0 || value > 24)
+	                throw new ArgumentOutOfRangeException(nameof(value),
+	                      "The valid range is between 0 and 24.");
+	
+	            _seconds = value * 3600;
+	        }
+	    }
+	}
+```
+				
+- <span style="color:#0070c0">PROPERTY VẪN DÙNG BACKED FIELD NHƯNG KẾT HỢP DÙNG EXPRESSION BODY</span>
+
+```CSharp
+//ví dụ 1
+private string _name; //backed field
+
+public string Name 
+{
+	get => _name;
+	set => _name = value;
+}
+```
+```CSharp
+//ví dụ 2
+public class Person
+{
+    private string _firstName; //backed-fied
+    private string _lastName; //backed-fied
+
+    public Person(string first, string last)
+    {
+        _firstName = first;
+        _lastName = last;
+    }
+
+    public string Name => $"{_firstName} {_lastName}";
+}
+```
+```CSharp
+//ví dụ 3
+public class SaleItem
+{
+    string _name; //backed-fied
+    decimal _cost; //backed-fied
+
+    public SaleItem(string name, decimal cost)
+    {
+        _name = name;
+        _cost = cost;
+    }
+
+    public string Name
+    {
+        get => _name;
+        set => _name = value;
+    }
+
+    public decimal Price
+    {
+        get => _cost;
+        set => _cost = value;
+    }
+}
+```
+
+
+##### Kĩ thuật 3: Kĩ thuật ẩn đi backed
+> Thực tế khi runtime, .NET tự add thêm ngầm getter, setter phía sau như kĩ thuật 2
+```CSharp
+public string Name {get; set;}
+public decimal Price { get; set; }
+```
+
+<span style="color:#91819c">*=> KĨ THUẬT PROPERTY NÀY GIÚP NHÌN OBJECT TỰ NHIÊN HƠN SO VỚI JAVA*</span>
+
+```Java
+//ví dụ get set cho object tên hoang trong java
+
+hoang.getName(); // lấy đc tên in đâu đó nếu muốn - gọi get() trực tiếp
+hoang.setName("HoangNT"); 
+```
+```CSharp
+//so sánh get set cho object tên hoang trong C#
+
+hoang.Name; //Lấy tên được in đâu đó nếu muốn - gọi get() ngầm
+hoang.Name = "HHOANG NNTT" // tự nhiên hơn, gán tên mới vào đặc tính Name
+```
+			  
+				  												
+#### 2. New mới một Object
+- 1 Class có thể không làm constructor, khi đó, bạn vẫn new bình thường `new Tên-Class();` --> khi run-time, <span style="color:#d4a216">.NET sẽ TỰ TẠO CHO BẠN 1 **CONSTRUCTOR DEFAULT, RỖNG, KHÔNG THAM SỐ ĐẦU VÀO**</span>
+
+>ví dụ
+```CSharp
+Student x = new Student();
+Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là Student rồi
+```
+
+ - <span style="color:#659532">Nếu định nghĩa sẵn các Property thì ta có quyền vừa new và gán PROTPERTY theo 2 kĩ thuật sau với sự hỗ trợ của <span style="color:#d4a216">CONSTRUCTOR DEFAULT</span> trong C#</span>
+ 
+	- > KĨ THUẬT 1 - TRUYỀN THỐNG (Na ná JAVA)
+		```CSharp
+		Student x = new();
+		x.Id = 1;
+		x.Name = "HOANG";
+		x.Yob = 2003;
+		```
+
+	- > KĨ THUẬT 2 - CÁCH ĐẸP C# HƠN
+		```CSharp
+		Student s1 = new Student { Id = 1, Name = "HOANGANH", Yob = 2003 };
+		Student s2 = new() { Id = 1, Name = "HOANGANH", Yob = 2003 };
+		Student s3 = new Student() { Id = 1, Name = "HOANGANH", Yob = 2003 };
+		```
+	-  <span style="color:#91819c">Đằng sau toán tử new là liệt kê các PROPERTY cần gắn value = value, nhét tất cả trong dấu ngoặc nhọn `{Value = Value}`</span>
+	- <span style="color:#91819c"> 3 lệnh trên là new qua CONTRUCTOR DEFAULT(), ngoặc nhọn bên ngoài nghĩa là danh sách các setter PROPERTY được gọi để gắn value, vừa khai báo vừa gán value cho setter</span>
+
+> [!Warning] Tạo riêng constructor bằng tay
+> - Khi 1 class mà bạn chủ động tạo CONTRUCTOR DEFAULT thì dĩ nhiên C# không tự tạo thêm CONTRUCTOR DEFAULT ( vì 2 thằng trùng tên nhau là không được)
+> - --
+> - Khi bạn tạo thêm CONSTRUCTOR KHÁC RỖNG TỨC CONSTRUCTOR CÓ THAM SỐ --> .NET không tự tạo thêm CONSTRUCTOR RỖNG DEFAUT CHO BẠN. --> Lúc này không có constructor rỗng được tạo tự động bằng .NET nữa --> Nếu muốn có Constructor Rỗng -> phải tự tạo bằng tay - tức tạo thêm mới constructor rỗng riêng.
+
+- <span style="color:#659532">Kĩ thuật New Constructor có tham số</span> trong C# 
+	- > Ta cũng có nhiều cách new :
+	
+		```CSharp
+			public class StudentName
+			{
+			    // Properties.
+				public string? FirstName { get; set; }
+				public string? LastName { get; set; }
+			    public int ID { get; set; }
+			    public override string ToString() => FirstName + "  " + ID;
+			    
+			    //Constructor Empty
+			    public StudentName() { }
+			    
+				// The following constructor has parameters for two of the three
+				// properties.
+				public StudentName(string first, string last)
+				{
+					FirstName = first;
+					LastName = last;
+				}
+			}
+			    
+			public class HowToObjectInitializers
+			{
+			    public static void Main()
+			    {
+				    //new object StudentName by using Constructor has 2 paramters name StudentName(string first, string last)
+			        StudentName student1 = new StudentName("Craig", "Playstead");  // ==> new (dựa trên thứ tự tham số đầu vào ta khai báo value và hệ thống tự gán value theo thứ tự tham số đầu vào: value1, value2, value3,...); 
+			        Student student11 = new StudentName(first: "Craig", last: "Playstead") //==> new (dựa trên tham số đầu vào ta gán tên tham số: value, tên tham số: value,...);
+				        
+			        //these following new objects with the help of EMTYP CONSTRUCTOR StudentName() { } same kĩ thuật 2 ở trên
+			        StudentName student2 = new StudentName { FirstName = "Craig", LastName = "Playstead" };
+			        StudentName student3 = new StudentName { ID = 183 };
+			        StudentName student4 = new StudentName { FirstName = "Craig", LastName = "Playstead", ID = 116 };
+			    }    
+			}
+		```
+
+
+
+> [!Tip] new {} & ()
+> - new object theo Constructor default thì <span style="color:#d4a216">khởi tạo các giá trị bằng cách gán các giá trị của các thuộc tính vào ngoặc nhọn</span> theo format {Tên property = value}
+> - new object theo Constructor có tham số thì <span style="color:#d4a216">khởi tạo các giá trị trong ngoặc tròn ()</span>
+
