@@ -256,13 +256,13 @@
 	 - Bên trong chứa các hành vi/behavior, method, function 
 		* Có thể public, private. Mặc định không nói gì là private
 
-#### 1. Kĩ thuật dùng PROPERTIES truy cập các đặc tính của class trong C# - [See]([](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties#properties-overview))
+1. **<span style="color:#00b0f0">Kĩ thuật dùng PROPERTIES truy cập các đặc tính của class trong C#</span>** - [See]([](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties#properties-overview))
  > Trong class, các thuộc tính/fieds của một object thường được khai báo với quyền truy cập là private - chỉ cho phép truy cập trực tiếp trong class. 
  > --> Để cung cấp cơ chế đọc, ghi dữ liệu lên các thuộc tính private của một object 
  > --> C# cung cấp kĩ thuật PROPERTIES (hoạt động tương tự như getter và setter) hỗ trợ việc truy cập các thuộc tính của object một cách dễ dàng, an toàn và linh hoạt. 
  <span style="color:#d4a216">Có 3 kĩ thuật sử dụng đặc tính - properties của class</span>
  
-##### Kĩ thuật 1: Kĩ thuật truyền thống Java
+**<span style="color:#00b0f0">Kĩ thuật 1: Kĩ thuật truyền thống Java</span>**
 ```CSharp
 	private string _name; //backed-fied
 	 
@@ -400,7 +400,7 @@ hoang.Name = "HHOANG NNTT" // tự nhiên hơn, gán tên mới vào đặc tín
 ```
 			  
 				  												
-#### 2. New mới một Object
+2. **<span style="color:#00b0f0">New mới một Object</span>**
 - 1 Class có thể không làm constructor, khi đó, bạn vẫn new bình thường `new Tên-Class();` --> khi run-time, <span style="color:#d4a216">.NET sẽ TỰ TẠO CHO BẠN 1 **CONSTRUCTOR DEFAULT, RỖNG, KHÔNG THAM SỐ ĐẦU VÀO**</span>
 
 >ví dụ
@@ -481,9 +481,9 @@ Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là 
 
 
 ## VI. TỔNG KẾT NHANH VỀ DATATYPE
-1. Data Type là gì - Kiểu dữ liệu là gì ?
+1. **<span style="color:#00b0f0">Data Type là gì - Kiểu dữ liệu là gì ?</span>**
 	- Là cách ta hoặc máy tính biểu diễn, thể hiển ra các thông tin quanh cuộc sống của và cách chúng được lưu trữ trong RAM, ví dụ các loại dữ liệu: số, chữ, ngày, tháng, đúng/sai, ...
-2. C# cung cấp nhiểu loại kiểu dữ liệu khác nhau, tùy vào ý nghĩa, mục đích, đặc trưng của loại kiểu dữ liệu đó
+2. **<span style="color:#00b0f0">C# cung cấp nhiểu loại kiểu dữ liệu khác nhau, tùy vào ý nghĩa, mục đích, đặc trưng của loại kiểu dữ liệu đó</span>**
 	- 2.0 Xét theo tiêu chí biểu diễn thông tin ra bên ngoài cho ta nhìn thấy - ta có các kiểu dữ liệu sau:
 		-> Số: số nguyên, số thực, số nhìn dạng nhị phân (binary), số thập phân (decimal), bát phân(octal), thập lục phân (hexa)
 		-> Chữ: 1 kí tự nào đó
@@ -520,7 +520,7 @@ Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là 
 		   }
 		```
 		- 2 kiểu Class và Interface rất truyền thống giúp ta lưu trữ và xử lý các info --> Lưu trữ info qua biến/backed field và hàm/method
-3. Kiểu dữ liệu loại DELEGATE - ỦY QUYỂN
+3. **<span style="color:#00b0f0">Kiểu dữ liệu loại DELEGATE - ỦY QUYỂN</span>**
 	- C# đưa ra 1 cách khác biệt nữa để tạo ra 1 loại data type mới thay vì dùng để lưu trữ info và xử lý (class/interface), kiểu mới này nó đi sưu tập tên của các hàm mà ở đâu đó trong khắp cái app của mình. --> 1 kiểu dữ liệu mới, 1 từ khóa mới để tạo object chuyên đi gom tên của các hành động >>>> GỌI LÀ DELEGATE - ỦY QUYỀN
 	> *Thay vì dùng Class, Interface để lưu cả info + hàm xử lí info. --> Bây giờ ta dùng delegate để tạo 1 không gian CHỈ ĐỂ **LƯU TRỮ TÊN CỦA CÁC HÀM***
 	- 🔗 👉 Tìm hiểu về Delegate [[FPT - Study - Take Notes/Fall 2023 - Semester 5/PRN211/Tổng hợp kiến thức PRN 211#VII. MỞ RỘNG SO VÓI OOP - DELEGATE & EVENT\|#VII. MỞ RỘNG SO VÓI OOP - DELEGATE & EVENT]]
