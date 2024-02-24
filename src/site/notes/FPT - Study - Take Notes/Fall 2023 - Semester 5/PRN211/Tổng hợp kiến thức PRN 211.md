@@ -4,17 +4,6 @@
 
 
 # 🗒️ DOT NET PRN211
----
-> [!SUMMARY]+ Nội dung
-> [[FPT - Study - Take Notes/Fall 2023 - Semester 5/PRN211/Tổng hợp kiến thức PRN 211#TIỀN BÀI HỌC - REVIEW KIẾN THỨC VỀ JAVA\|#TIỀN BÀI HỌC - REVIEW KIẾN THỨC VỀ JAVA]]
-> [[FPT - Study - Take Notes/Fall 2023 - Semester 5/PRN211/Tổng hợp kiến thức PRN 211#I. .NET, .NET FRAMEWORK, .NET CORE\|#I. .NET, .NET FRAMEWORK, .NET CORE]]
-> [[FPT - Study - Take Notes/Fall 2023 - Semester 5/PRN211/Tổng hợp kiến thức PRN 211#II. PHÂN BIỆT PROJECT, SOLUTION\|#II. PHÂN BIỆT PROJECT, SOLUTION]]
-> [[FPT - Study - Take Notes/Fall 2023 - Semester 5/PRN211/Tổng hợp kiến thức PRN 211#III. CODING CONVENTION - QUY ƯỚC ĐẶT TÊN TRONG DỰ ÁN\|#III. CODING CONVENTION - QUY ƯỚC ĐẶT TÊN TRONG DỰ ÁN]]
-> [[FPT - Study - Take Notes/Fall 2023 - Semester 5/PRN211/Tổng hợp kiến thức PRN 211#III. CODING CONVENTION - QUY ƯỚC ĐẶT TÊN TRONG DỰ ÁN\|#III. CODING CONVENTION - QUY ƯỚC ĐẶT TÊN TRONG DỰ ÁN]]
-> [[FPT - Study - Take Notes/Fall 2023 - Semester 5/PRN211/Tổng hợp kiến thức PRN 211#V. OOP - HƯỚNG ĐỐI TƯỢNG TRONG C\|#V. OOP - HƯỚNG ĐỐI TƯỢNG TRONG C]]
-> [[FPT - Study - Take Notes/Fall 2023 - Semester 5/PRN211/Tổng hợp kiến thức PRN 211#VI. TỔNG KẾT NHANH VỀ DATATYPE\|#VI. TỔNG KẾT NHANH VỀ DATATYPE]]
-> [[FPT - Study - Take Notes/Fall 2023 - Semester 5/PRN211/Tổng hợp kiến thức PRN 211#VII. MỞ RỘNG SO VỚI OOP - DELEGATE & EVENT\|#VII. MỞ RỘNG SO VỚI OOP - DELEGATE & EVENT]]
-> [[FPT - Study - Take Notes/Fall 2023 - Semester 5/PRN211/Tổng hợp kiến thức PRN 211#VIII. WINDOWS FORMS VÀ STYLE VIẾT CODE\|#VIII. WINDOWS FORMS VÀ STYLE VIẾT CODE]]
 
 ---
 
@@ -121,3 +110,83 @@
 		- --> Loại assembly thứ nhất được lưu trong file có phần mở rộng .exe, tương tự như các file chương trình thực thi khác trong Windows. 
 		- --> Loại assembly thứ hai được lưu trong các file có phần mở rộng .dll (Dynamic Link Library), tương tự như các file thư viện của Windows. 
 		- ----> ***Việc biên dịch ra .exe hay .dll phụ thuộc vào loại project.***
+## III. CODING CONVENTION - QUY ƯỚC ĐẶT TÊN TRONG DỰ ÁN
+#### NGOÀI CLASS
+1. TÊN SOLUTION  
+	- Pascal Case - chữ hoa từng đầu từ, danh từ
+	- Template: <span style="color:#0070c0">[TênCôngTy.TênSolution]</span>
+	- Template: <span style="color:#0070c0">[TênThươngHiệu.TênSolution]</span>
+	> - Tên công ty/thương hiệu vd như Microsoft. ;  Oracle., ...
+	> - Tên solution - tên của bài toán lớn cần giải quyết = tên dự án: Fap, StudentManagement,...
+	> ví dụ:  FPT.Fap, Giaolang.Fap,..
+	
+2. TÊN PROJECT 
+	- Pascal Case, chữ hoa từng đầu từ, danh từ, chứa tên Solution 
+	  Template 
+	- <span style="color:#0070c0">[TenCongTy.TenSolution.TenProject1]</span>
+	- <span style="color:#0070c0">[TenCongTy.TenSolution.TenProject2]</span>
+	- <span style="color:#0070c0">[TenCongTy.TenSolution.TenProject3]</span>
+  >  ví dụ
+  >  Giaolang.Fap.Studen ->  mỗi project trong dự án FAP sẽ gồm tên Solution 'Giaolang.Fap' tập hợp các class có liên quan đến từng nhóm chức năng 
+  >  Giaolang.Fap.Lecturer
+  >  Giaolang.Swp391.Authen 
+  >  Giaolang.Swp391.Notification
+	
+3. TÊN NAMESPACE 
+	- Dùng Pascal Case - chữ hoa đầu từ, danh từ + chứa tên Solution 
+	- Namespace là không gian tên, package, tên gọi gôm chung các class vào 1 cụm logic nào đó (tương đương package trong java) đưa vào một ngôi nhà tên Namespace.
+	> -> Cho phép các class được trùng tên khác nhau về package/namespace
+	> -> Namespace dùng để chia khu vực
+
+4. TÊN CLASS 
+	- Pascal Case, Chữ hoa từng đầu từ, danh từ, thược về namespace, DÙNG DANH TỪ SỐ ÍT !!
+   > ví dụ: Student, Lecturer, Animal, Utility, String, ...
+    > ví dụ: internal class Student{}  
+    >       *internal - là một truong những từ khóa của .NET modifier(internal, public, private, protected, protected internal) - quy định phạm vi truy cập, liên quan đến quyền truy xuất thuộc tính của đối tượng.*
+    >        *Trong class, nếu các thuộc tính khai báo trong class không định nghĩa quyền truy cập modifier(private, public,..) thì mặc định các thuộc tính đấy là private.*
+
+#### TRONG CLASS
+5. TÊN HÀM (method): 
+	- VERB + OBJECT - Pascal Case, chữ hoa từng đầu từ, có động từ đứng đầu
+	> Ví dụ: Print(), ToString(), Parse(), Compare(), Equals() ( giống và khác JAVA)	
+6. TÊN BIẾN LƯU ĐẶC ĐIỂM CỦA OBJECT - <span style="color:#91819c">INSTANCE VARIABLE, C# gọi LÀ DATA FIELD, BACKED-FIELD</span> 
+	- Camel Case cho Danh từ, dùng "" đứng tên biến nếu là biến PRIVATE(chỉ được truy cập trong class)
+	
+   > Biến lưu đặc điểm của object -> là các biến/field được khai báo trong class, nằm ngoài các hàm(method), block, constructor - chúng được gọi là biến toàn cục của một class(instance variable) - được khởi tạo khi một instance/object của class được tạo và chết đi khi instance/object đã bị hủy.
+    > vd: private string id; private string _name;
+7. TÊN BIẾN CỤC BỘ - <span style="color:#91819c">LOCAL VARIABLE - BIẾN KHAI BÁO TRONG HÀM||TRÊN THAM SỐ HÀM||BLOCK||CONSTRUCTOR</span> 
+	- Dùng Camel Case cho Danh từ
+   > Biến cục bộ của hàm||block||constructor được tạo ra khi có lời gọi đến hàm||block||constructor - một khi được tạo ra thì chỉ được truy cập nội bộ trong hàm||block||constructor - chết đi sau khi lời gọi đến chúng thực thi xong.
+    > Ví dụ: float pi; int job, string homePhone, setCellPhone(string cellPhone),...
+8. TÊN HẰNG SỐ: <span style="color:#91819c">BIẾN MÀ KO CHO PHÉP THAY ĐỔI VALUE, PHẢI GÁN VALUE NGAY KHI ĐƯỢC KHAI BÁO</span> - BIẾN THUỘC CLASS 
+	- DÙNG PASCAL CASE 
+	- NẾU KHAI BÁO HẰNG Ở MỨC CLASS (khai báo dưới tên class không khai báo hằng trong hàm) -> MẶC NHIÊN C# COI NÓ LÀ BIẾN STATIC MÀ KHÔNG CẦN DÙNG KHÓA STASTIC  
+    > Ví dụ: public const double Pi = 3.14; == public static const double Pi = 3.14;
+	- > *VỚI JAVA TÊN HẰNG SỐ LÀ CHỮ HOA TOÀN TẬP, VÀ CÓ **SHIFT_GẠCH_PHÂN_CÁCH_CÁC** TỪ KHÁC NHAU.*
+9. TÊN DELEGATE: 
+	- Đặt tên cho DELEGATE là Danh từ mang ý nghĩa đại diện cho việc xử lý hành động của các hàm mà tên gọi sẽ trỏ đến.
+   	- Vì Delegate thường dính dáng đến xử lý các event sự kiện trong lập trình hướng sự kiện.
+   	> ví dụ : các nút nhấn trên màn hình - GUI APP
+	--> Nên delegate thường có SUFFIX - HẬU TỐ đuôi là <span style="color:#91819c">Handler</span>. Nếu dính đến CALLBACK - HẬU TỐ đuôi là <span style="color:#91819c">Callback</span>
+	- Nếu chung chung thì nó có HẬU TỐ <span style="color:#91819c">Delegate</span> = "Em đại diện cho một nhóm hàm". "Khi nào cần dùng hàm cụ thể nào trong nhóm, hãy bảo em trỏ tới hàm đó bằng cách bảo em gọi tên hàm đó nhé !"
+	- BIẾN THUỘC VỀ DELEGATE - ĐẠI DIỆN CHO HÀM + DÙNG ĐỂ GỌI HÀM --> TÊN NÊN ĐẶT LÀ : VERB + OBJECT, VERB PHRASE - Động từ chính
+	> ví dụ: Danh tử đại diện cho một nhóm các hàm MyDelegate. 
+	>        Biến delegate dùng gọi hàm cụ thể, EatDrinkDelegate eat, EatDrinkDelegate drink
+10. Tên cho các thành phần của Window Forms
+    <span style="color:#555555">Component (nút nhấn, checkbox, ô hội thoại - dialog...) trên Window Forms</span> 
+	 - Button -> <span style="color:#659532">btn[tên hành động]</span> vd btnExit
+	 - TextBox -> ô nhập, <span style="color:#659532">txt[tên thông tin cần lấy]</span> vd txtName, txtPassword 
+	 - DataGridView (lưới/table) -> <span style="color:#659532">grd[tên đối tượng]</span> vd grdStudent
+	 - RadioButton(nút vặn) -> <span style="color:#659532">rad[tên đối tượng]</span> vd radColor
+	 - CheckBox (tích chọn) -> <span style="color:#659532">chk[tên đối tượng cần yes no]</span> vd chkAgree
+	 - ComboBox(hộp xổ) -> <span style="color:#659532">cmb[tên đại diện tập hợp nhóm]</span> vd cmbColor
+	 - Form(màn hình, cửa sổ, class) -> 
+	 - <span style="color:#659532">frm[tên động tử chỉ mục đích của Form][tên đôi tượng]</span> 
+	 - <span style="color:#659532">[tên động từ chỉ mục đích của Form][tên đôi tượng]Form</span>
+	   > vd frmAddStudent, AddStudentForm
+- > [!Tip] Tham khảo về phân loại biến
+  > [Variables in C# - Category](https://www.educba.com/variables-in-c-sharp/)
+   > [Variable categories](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/variables#92-variable-categories)
+
+
+
