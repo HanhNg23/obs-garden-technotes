@@ -579,3 +579,11 @@ Hàm là một object cần khái quát
 	- Nói FV x; --> sắp nói đến một hàm void - void --> x đại diện cho một phần tử bất kì thuộc tập hợp FV --> x thuộc FV
 	- x = FV1; --> gán tên hàm là FV1 cho x (<span style="color:#555555">FV1 này là một phần tử nằm trong tập hợp FV</span>) --> Vì FV1 là hàm kiểu void - void nên x sẽ trỏ đến hàm FV1 thông qua tên gọi hàm là "FV1" (<span style="color:#00b0f0">*Chú ý: gọi hàm nhưng không thêm ngoặc '()'*</span>) 
 	- Tương tự: Nói FR x = FR2 --> x là một hàm FR2 == x sẽ trỏ đến hàm FR2 thuộc tập hợp hàm FR có style int - void
+
+> [!SUCCESS] Gọi hàm trong Delegate
+> - Bình thường gọi hàm ko dùng Delegate là gọi hàm bằng **tên hàm kèm DẤU "()" và trong truyền tham số**; (<span style="color:#6a5858">vd: obj.hàm(arguments))</span> 
+> - <span style="color:#8d8d2a">Khi dùng DELEGATE --> ta không gọi hàm trực tiếp - ko gọi hàm có dấu "()" --> MÀ **GỌI QUA TÊN HÀM CỤ THỂ**</span>
+> ví dụ: FR y = FR2 --> gọi hàm cụ thể qua tên hàm là FR2 được lấy ra trong tập hợp FR 
+> - <span style="color:#8d8d2a">Ngoài ra, DELEGATE còn có tính năng mở rộng của việc gọi hàm -</span> [Multicast Delegates](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/how-to-combine-delegates-multicast-delegates)
+> 	- Nếu ta có int x = 4; ta có thể chơi x += 5 == x = (current) x + 5 
+> 	--> DELEGAT cũng có thể làm điều đó bằng cách FV y = FV1; y += FV1; y =+ FV2 --> bảo y trỏ đến hàm FV1 - thực thi xong - trỏ hàm FV1 tiếp theo thực thi tiếp - thực thi xong - trỏ hàm FV2 thực thi.
