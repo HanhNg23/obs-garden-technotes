@@ -541,3 +541,12 @@ Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là 
 
 - <span style="font-weight:bold; color:#555555">Hàm là một object cần khái quát</span>
 
+| Hàm kiểu void                                       | Hàm kiểu retrun                                    | Hàm kiểu trả về boolean                             |                   |
+| --------------------------------------------------- | -------------------------------------------------- | --------------------------------------------------- | ----------------- |
+| void FV1(){}                                        | int FR1(){}                                        | bool FB(){}                                         | ...nhiều hàm khác |
+| void FV2(){}                                        | int FR2(){}                                        | bool FB2(){}                                        |                   |
+| style FUNCTION trả về void                          | style FUNCTION trả về int                          | style FUNCTION trả về bool                          |                   |
+| <span style="color:#8d8d2a">style void FV();</span> | <span style="color:#8d8d2a">style int FR();</span> | <span style="color:#8d8d2a">style bool FB();</span> |                   |
+| 👆 tên gọi đại diện nhóm                            | 👆 tên gọi đại diện nhóm                           | 👆 tên gọi đại diện nhóm                            |                   |
+| hàm cùng style void - void                          | hàm cùng style int - void                          | hàm cùng style bool-void                            |                   |
+|                                                     |                                                    |                                                     |                   |
