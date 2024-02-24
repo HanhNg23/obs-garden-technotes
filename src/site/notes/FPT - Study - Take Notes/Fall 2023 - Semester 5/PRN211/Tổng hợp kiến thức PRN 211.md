@@ -527,19 +527,18 @@ Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là 
 
 ## VII. MỞ RỘNG SO VỚI OOP - DELEGATE & EVENT
 #### 1. KHÁI NIỆM DELEGATE
- <span style="color:#8d8d2a">**Giới thiệu**</span> [See](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/#delegates-overview)
- ---
+
+<span style="color:#8d8d2a">**Giới thiệu**</span> [See](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/#delegates-overview)
 - Khái niệm Datatype -> khái quát - gom và đặt tên
 - Data type - đại diện một tập hợp chung. Ví dụ tập hợp kiểu int - data type tên int - đây là tên đại diện cho một tập hợp gồm các số nguyên. 
 	- -> Định nghĩa tập hợp thuộc kiểu int là tập hợp các giá trị nguyên thì tập hợp biểu diễn như sau: int là 4 byte có dấu -> tập hợp giá trị của tập hợp tên int {-2,147,483,648, 2,147,483,647}
 	- -> Khi muốn gọi đến một phần tử cụ thể trong tập hợp, tuy nhiên ta chưa biết cụ thể phần tử cần gọi là phần tử nào --> ta sẽ tạo ra 1 BIẾN tên là x - với x thuộc tập hợp int - viết code: `int x;` --> x sẽ là một phần tử bất kì nào đó trong tập hợp int --> Biến x này sẽ được dùng để trỏ đến một phần tử thuộc tập hợp int trên. <span style="color:#555555">ví dụ x = 4; --> x trỏ đến phần tử 4 của tập hợp int</span>
-- ==> Tương tự - Delegate sẽ hoạt động theo cách trên với mục đích sử dụng là tạo ra được một tập hợp hàm mới - tập hợp các phần tử là các hàm trong một class có cùng kiểu dữ liệu trả về, cùng kiểu tham số truyền vào.
-- Vậy bản thân Delegate là một loại đại diện cho tập hợp các biến tham chiếu thuộc kiểu Delegate - từng biến tham chiếu sẽ tham chiếu đến tập hợp hàm của riêng nó được tạo bởi Delegate
----
+	- Tương tự - Delegate sẽ hoạt động theo cách trên với mục đích sử dụng là tạo ra được một tập hợp hàm mới - tập hợp các phần tử là các hàm trong một class có cùng kiểu dữ liệu trả về, cùng kiểu tham số truyền vào.
+==> *Vậy bản thân Delegate là một loại đại diện cho tập hợp các biến tham chiếu thuộc kiểu Delegate - từng biến tham chiếu sẽ tham chiếu đến tập hợp hàm của riêng nó được tạo bởi Delegate*
 
-<span style="color:#8d8d2a">**Hình dung mô tả ?**</span>
+<span style="font-weight:bold; color:#8d8d2a">**Hình dung mô tả ?**</span>
 
-- <span style="font-weight:bold; color:#555555">Hàm là một object cần khái quát</span>
+<span style="font-weight:bold; color:#555555">Hàm là một object cần khái quát</span>
 
 | Hàm kiểu void                                       | Hàm kiểu retrun                                    | Hàm kiểu trả về boolean                             |                   |
 | --------------------------------------------------- | -------------------------------------------------- | --------------------------------------------------- | ----------------- |
@@ -550,16 +549,18 @@ Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là 
 | 👆 tên gọi đại diện nhóm                            | 👆 tên gọi đại diện nhóm                           | 👆 tên gọi đại diện nhóm                           |                   |
 | hàm cùng style void - void                          | hàm cùng style int - void                          | hàm cùng style bool-void                            |                   |
 |                                                     |                                                    |                                                     |                   |
+<span style="color:#d4a216">===> *ĐẠI DIỆN CHO MỘT ĐỐNG CÁC HÀM CÓ CÙNG STYLE --> gọi là DELEGATE*</span>
+- <span style="color:#555555">ví dụ ở đây có 3 đại diện: đại diện hàm void - void FV();, đại diện hàm int - int FR(); đại diện hàm bool - bool FB();</span>
+	- <span style="color:#555555"> void - void -> chỉ loại hàm có kiểu trả về là kiểu void, ko nhận tham số gì thì gọi là void</span>
+	- <span style="color:#555555">int - void -> chỉ loại hàm có kiểu trả về là int, ko nhận tham số gì thì gọi là void</span>
+	- <span style="color:#555555">bool - void -> tương tự</span>
 
-<span style="color:#91819c">===> ĐẠI DIỆN CHO MỘT ĐỐNG CÁC HÀM CÓ CÙNG STYLE --> gọi là DELEGATE 
-(ví dụ ở đây có 3 đại diện: đại diện hàm void - void FV();, đại diện hàm int - int FR(); , đại diện hàm bool - bool FB();)</span>
-<span style="color:#555555"> void - void -> chỉ loại hàm có kiểu trả về là kiểu void, ko nhận tham số gì thì gọi là void</span>
-<span style="color:#555555">int - void -> chỉ loại hàm có kiểu trả về là int, ko nhận tham số gì thì gọi là void</span>
-<span style="color:#555555">bool - void -> tương tự</span>
+<span style="color:#8d8d2a">**Hình minh họa hoạt động của delegate**</span> 
+	
+![](https://i.imgur.com/AQ7KdlL.png)
 
-- <span style="color:#91819c">Hình minh họa hoạt động của delegate</span> 
-	- ![](https://i.imgur.com/AQ7KdlL.png)
-<span style="color:#8d8d2a">==> Qua hình trên ta đã khái quát ra được 2 DATA TYPE = 2 loại delegate là FV và FR</span>
+<span style="color:#9a7db0">==> Qua hình trên ta đã khái quát ra được 2 DATA TYPE = 2 loại delegate là FV và FR</span>
 
 > [!NOTE] 
 > Theo định nghĩa của C#, Delegate là một loại chuyên đóng gói một phương thức nào đó ~~ tương tự như hàm con trỏ trong C và C++. Nó khác hàm con trỏ C ở chỗ là các delegates này là object-oriented, type safe và secure. Các delegates này được tạo ra bởi class Delegate trong .NET. Tên của loại delegate đó sẽ phụ thuộc vào tên mà ta định nghĩa cho delegate trên.
+
