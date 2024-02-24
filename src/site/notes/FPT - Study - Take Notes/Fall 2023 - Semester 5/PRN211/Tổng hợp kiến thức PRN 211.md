@@ -190,3 +190,59 @@
 
 
 
+## IV. KIỂU DỮ LIỆU - DATA TYPE (giống và khác JAVA)
+1. PHÂN LOẠI THEO CÁC HÀNG GỐC VÀ HÀNG ĐỘ 
+   *(pre-defined - primitive, user-defined - non-primitive)* 
+	- |             Java             |                  C#                   |
+	  |:----------------------------:|:-------------------------------------:|
+	  |   byte, short, int, long,    |     byte, short, int, long, float     |
+	  | float, char, boolean, double | , char, bool, double,  string, object |
+	
+	- --> *HÀNG GỐC, NHỮNG KIỂU DATA CÓ SẴN, TỪ ĐÓ GIÚP TA TẠO RA CÁC KIỂU PHỨC TẠP HƠN - GỌI LÀ USER - DEFINED: Class, interface, struct, enum, delegate*
+2. PHÂN LOẠI THEO CÁCH LƯU TRỮ TRONG RAM !!!
+	- JAVA CHIA LÀM 2 LOẠI DATA TYPE (biến primitive - biến nguyên thủy và biến object - biến tham chiếu)
+	  - | PRIMITIVE | OBJECT |
+		| --------- | ------ | 
+		| --------- | ------ | 
+		| byte      | object |  
+		| short     | class  |                                      
+		| int       |        |                                      
+		| long      |        |                                      
+		| float     |        |                                      
+		| char      |        |                                      
+		| boolean   |        |                                      
+		| double    |        |                                      
+		|           |        |                                      
+		|           |        |                                      
+	- ![](https://i.imgur.com/yFLBUvz.png) 
+	- TRONG C# phân thành 2 loại là 
+		- BIẾN VALUE - TYPE (java thì là primitive) CHỈ DÙNG 1 VÙNG RAM ĐỂ LƯU GIÁ TRỊ. VÙNG RAM NÀY CHIẾM BAO NHIÊU BYTE TÙY THUỘC LOẠI DATA TYPE
+
+	    ví dụ: 
+		* > byte : 1 byte
+		* > short: 2 byte
+		* > int: 4 byte
+		* > float: 4 byte
+		* > long: 8 byte
+		* > double: 8 byte
+		* > char: 2 byte (Unicode)
+	- BIẾN REFERENCE - TYPE (java thì là object type) THÌ TỐN ĐẾN 2 VÙNG RAM. ---> 1 VÙNG CHO BIẾN OBJECT/BIẾN CON TRỎ - TRỎ VÙNG NEW (trỏ tới một địa chỉ) NẰM TRÊN HEAP CHỨA FULL INFO CỦA OBJECT
+3. PHÂN VÙNG NHỚ TRONG RAM - Memory Segment 
+	- ![](https://media.geeksforgeeks.org/wp-content/uploads/memoryLayoutC.jpg)
+	   > Tham khảo [Memory Layout of C Programs](https://www.geeksforgeeks.org/memory-layout-of-c-program/)
+	
+	- ![](https://github.com/nguyenchiemminhvu/CPP-Tutorial/blob/master/8-con-tro/8-10-cac-phan-vung-tren-bo-nho-ao/0.png?raw=true)
+	
+	- <span style="color:#8d8d2a">Code segment hay text segment</span> - nơi lưu trữ các mã lệnh đã được biên dịch của các chương trình máy tính. Những mã lệnh trong phân vùng sẽ được chuyển đến CPU xử lý khi cần thiết. Code segment chịu sự chi phối của hệ điều hành
+	- <span style="color:#8d8d2a">Data segment (initialize data segment)</span> - phân vùng mà hệ điều hành sử dụng để khởi tạo giá trị cho các biến kiểu static, biến toàn cục (global variable) của các chương trình.
+	- <span style="color:#8d8d2a">BSS segment(uninitialized data segment)</span> - được dùng để lưu trữ các biến kiểu static, biến toàn cục nhưng chưa được khởi tạo giá trị.
+	- <span style="color:#8d8d2a">Heap segment</span> - phần vùng được sử dụng để cấp phát bộ nhớ động thông qua kĩ thuật Dynamic memory allocation. Nơi lưu trữ các object sau khi toán tử new được thực hiện
+		- Sau khi toán tử new thực thi thành công sễ trả về địa chỉ của vùng nhớ được cấp phát trên heap -> ta có thể sử dụng con trỏ có kiểu dữ liệu phù hợp để lưu trữ địa chỉ trả về này --> Con trỏ - công cụ duy nhất giúp ta truy cập chính xác địa chỉ của vùng nhớ lưu trữ thông tin đối tượng và truy xuất giá trị .
+	- <span style="color:#8d8d2a">Stack Segment</span> - được dùng để cấp phát bộ nhớ cho tham số của các hàm(function parameters) và biến cục bộ trong các block. Hoạt động theo cấu trúc dữ liệu "Last in, First out"(LIFO), các lệnh rong khối sẽ được đưa vào trong stack và đưa vào vùng nhớ để được xử lý theo thứ tự  LIFO, xử lý xong hết các lệnh trong khối thì giải phóng bộ nhớ và đến lượt khối lệnh tiếp theo.
+  
+       >Nguồn tham khảo - [Nguồn](https://cpp.daynhauhoc.com/8/10-phan-loai-cac-vung-nho-stack-va-heap/)
+
+	- > Biến static
+     - ![](https://i.imgur.com/g3w7KgH.jpg)
+     > id là trong class Student là một biến static - là một biến được nhìn thấy trong toàn app. Việc trích xuất tới nó phải thông qua tên class Student và gọi tới biến.` Student.id`. Nếu có sự thay đối đối với biến static id --> đồng nghĩa sự thay đổi này sẽ được nhìn thầy trong toàn bộ app.  
+     > Cụ thể - ta khởi tạo 2 object của Student là s1 và s2. Trong đó s1 đã set giá trị cho id = 1, vậy Student.id đang = 1, nhưng s2 set id = 2 --> hệ lụy là id thay đổi = 2 -- vì là biến static - được sử dụng chung --> Student1.id bị thay đổi thành 2
