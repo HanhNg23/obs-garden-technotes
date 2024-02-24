@@ -785,3 +785,37 @@ Mô hình 3 lớp - layer gồm có 3 thành phần chính:
 | btnSearch()                     | Search(id)                       |                                                              |
 |                                 |                                  |                                                              |
 
+> [!QUESTION]+ Nhận xét 
+> 🌸 Muốn xài SQLServer thì dùng class StudentRepositorySqlServer
+> 🌸 Muốn xài MySQLServer thì dùng class StudentRepositoryMySqlServer
+> 
+> ↪ 🤔 Nhưng vấn đề hình dung cả 2 class trên đếu có chức năng chính là thao tác dữ liệu với database khác nhau ở hệ cơ sở dữ liệu, nhưng chắc chắc sẽ có các phương thức chung như là kết nối database, truy vấn CRUD lên database,...==> 2 class xài chung một outline
+> 
+> ⚒️ Tới đây ta nâng cấp code, cho 2 class trên tuân thủ một outline - ta sẽ tạo dùng INTERFACE với mục đích cung cấp một lớp làm mẫu chứa outline, các lớp học theo mẫu này chỉ có nhiệm vụ triển khai phát triển lên từ lớp mẫu.
+> 
+> ⚙️ ví dụ: Lớp Cha là interface có 2 phương thức cần lớp con triển khai là ChàoChaMẹTrướcKhiĐiHọc(), ChàoChaMẹKhiĐiHọcVề() --> Lớp Con là Class - Con 1 , Con 2 đều phải triển khai 2 phương thức trên và nếu muốn nó có thể triển khai thêm các phương thức khác của riêng nó
+
+
+
+| UI                                                                             | Chứa data phục vụ Form                                                                           | Định dạng dữ liệu phục vụ                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| Class Form ListStudents.cs - UI                                                | Class StudentRepositorySqlServer OR StudentRepositoryMySqlServer - implement -> IStudentRepository | Class Student Id, Name, Yob  {get; set;} cho từng thuộc tính |
+| IStudentRepository _repo                                                       | List`<Student>` `_ds`;                                                                           |                                                              |
+| (👆 _repo. sẽ ăn theo các hàm bên lớp con mà đã triển khai từ Interface Cha 👉 |                                                                                                  |                                                              |
+| dgvStudentList                                                                 | GetAll() -> List\<Student\>                                                                        |                                                              |
+| btnAdd()                                                                       | Add(Student x)                                                                                   |                                                              |
+| btnUpdate()                                                                    | Update(Student x)                                                                                |                                                              |
+| btnDelete()                                                                    | Delete(id)                                                                                       |                                                              |
+| btnSearch()                                                                    | Search(id)                                                                                       |                                                              |
+
+> [!SUMMARY]+ Tổng quát
+> <span style="color:#9a7db0">Class StudentRepositoryMySQL : IStudentRepository</span>
+> <span style="color:#9a7db0">Class StudentRepositorySqlServer : IStudentRepository</span>
+> 	
+> <span style="color:#9a7db0">Class Form ListStudent.cs - UI</span>
+> 	<span style="color:#9a7db0">IStudentRepository _repo = StudentRepositoryMySQL()</span>
+> 	<span style="color:#9a7db0">IStuentRepository _repo = StudentRepositorySqlServer();</span>
+> 	
+> 	===> nếu muốn dùng GUI Form ListStudent thì các class triển khai repository bắt buộc phải implement **Interface IStudentRepository** vì GUI chỉ chơi với thằng là instance hay là con của IStudetnRepository
+> 	==> Đây gọi là các **DEPENDENCY INJECTION**
+> 	==> Trong thực tế, người ta thường khai báo Interface để đảm bảo các thằng con implement thằng cha phải đồng nhất các chức năng cơ bản cần bắt buộc khai báo.
