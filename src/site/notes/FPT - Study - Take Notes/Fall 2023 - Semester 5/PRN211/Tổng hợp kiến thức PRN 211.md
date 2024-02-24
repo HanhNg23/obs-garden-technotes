@@ -616,7 +616,7 @@ Hàm là một object cần khái quát
 
 #### 2. KHAI BÁO, KHỞI TẠO VÀ SỬ DỤNG DELEGATE [See](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/how-to-declare-instantiate-and-use-a-delegate)
  
-1. <span style="color:#8d8d2a">Sử dụng Named Method</span>
+1. <span style="color:#8d8d2a">**Sử dụng Named Method**</span>
 	- Named method là ta đang định nghĩa sẵn một hàm. Khi khởi tạo một loại delegate nào đó thì ta có thể sử dụng hàm được định nghĩa sẵn và truyền hàm đó như một parameter.
     - >ví dụ
 		```Csharp
@@ -631,7 +631,7 @@ Hàm là một object cần khái quát
 		```
 
 
-2. <span style="color:#8d8d2a">Sử dụng Anonymous Method</span>
+2. <span style="color:#8d8d2a">**Sử dụng Anonymous Method**</span>
 	- Vì Delegate sinh ra để trỏ, lưu trữ địa chỉ của hàm nào đó = Tên-hàm-nào-đó() và sau đó delegate sẽ gọi hàm này thay cho gọi hàm trực tiếp
 	- Nhưng có tình huống ta làm biếng tạo sẵn hàm - named method - một hàm có tên gọi đàng hoàng --> LÀM BIẾNG ĐẶT TÊN HÀM, NHƯNG VẪN MUỐN NHỜ DELEGATE GỌI GIÙM đến một hàm chỉ có mã lệnh chứ không khai báo hàm cụ thể (có tên) --> Anonymous method RA ĐỜI
 	- Anonymous method - C# cho phép bạn khởi tạo một delegate bằng cách định nghĩa trực tiếp một code block mà ta muốn delegate xử lý. <span style="color:#555555">*(Codeblock này có thể viết theo kiểu lambda expression || anonymous method và codeblock phải đúng style của delegate trên.)*</span>
@@ -646,7 +646,7 @@ Hàm là một object cần khái quát
 		    { Console.WriteLine($"Notification received for: {name}"); };
 		```
 
-3. <span style="color:#8d8d2a">Sử dụng Lambda Expression</span> - <span style="color:#91819c">Nhìn hàm mà giống biểu thức tính toán</span>
+3. <span style="color:#8d8d2a">**Sử dụng Lambda Expression**</span> - <span style="color:#91819c">Nhìn hàm mà giống biểu thức tính toán</span>
 	- Là trường hợp đặc biệt của ANONYMOUS FUNCTION - Tức là nó cũng là hàn ẩn danh - anonymous method - nhưng được viết ở mức độ rút gọn nhất có thể
 	---
 	- <span style="color:#91819c">B1. CĂN ĐẦU VÀO CỦA BIỂU THỨC Y CHANG ĐẦU VÀO CỦA HÀM ĐANG ĐƯỢC TRỎ</span>
