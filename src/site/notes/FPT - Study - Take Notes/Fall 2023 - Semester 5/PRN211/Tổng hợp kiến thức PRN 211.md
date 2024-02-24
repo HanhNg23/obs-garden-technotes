@@ -779,32 +779,9 @@ Mô hình 3 lớp - layer gồm có 3 thành phần chính:
 | Class Form ListStudents.cs - UI | Class StudentRepositorySqlServer | Class Student Id, Name, Yob  {get; set;} cho từng thuộc tính |
 | StudentRepoSqlServer `_repo`    | List`<Student>` `_ds`;           |                                                              |
 | dgvStudentList                  | GetAll() -> List<Student>        |                                                              |
-| btnAdd()                    | Add(Student x)              |                                                      |
-| btnUpdate()                 | Update(Student x)           |                                                      |
-| btnDelete()                 | Delete(id)                  |                                                      |
-| btnSearch()                 | Search(id)                  |                                                      |
-|                             |                             |                                                      |
+| btnAdd()                        | Add(Student x)                   |                                                              |
+| btnUpdate()                     | Update(Student x)                |                                                              |
+| btnDelete()                     | Delete(id)                       |                                                              |
+| btnSearch()                     | Search(id)                       |                                                              |
+|                                 |                                  |                                                              |
 
-<span style="color:#91819c">Vấn đề</span> -> Tôi muốn chuyển sang xài MYSQL, ta cần 1 class khác cung cấp data phục vụ Form nhưng data tôi muốn lấy từ MYSQL
-<span style="color:#00b0f0">Giải quyết</span> -> Chỉ cần thêm 1 class ở vùng phục vụ data cho form, form không cần đổi, nhờ bạn code
-
-| UI                              | Chứa data phục vụ Form             | Định dạng dữ liệu phục vụ                                    |
-| ------------------------------- | ---------------------------------- | ------------------------------------------------------------ |
-| Class Form ListStudents.cs - UI | Class StudentRepositoryMySqlServer | Class Student Id, Name, Yob  {get; set;} cho từng thuộc tính |
-| StudentRepoSqlServer `_repo`    | List`<Student>` `_ds`;             |                                                              |
-| dgvStudentList                  | GetAll() -> List<Student>          |                                                              |
-| btnAdd()                        | Add(Student x)                     |                                                              |
-| btnUpdate()                     | Update(Student x)                  |                                                              |
-| btnDelete()                     | Delete(id)                         |                                                              |
-| btnSearch()                     | Search(id)                         |                                                              |
-|                                 |                                    |                                                              |
-
-> [!QUESTION]+ Nhận xét 
-> 🌸 Muốn xài SQLServer thì dùng class StudentRepositorySqlServer
-> 🌸 Muốn xài MySQLServer thì dùng class StudentRepositoryMySqlServer
-> 
-> ↪ 🤔 Nhưng vấn đề hình dung cả 2 class trên đếu có chức năng chính là thao tác dữ liệu với database khác nhau ở hệ cơ sở dữ liệu, nhưng chắc chắc sẽ có các phương thức chung như là kết nối database, truy vấn CRUD lên database,...==> 2 class xài chung một outline
-> 
-> ⚒️ Tới đây ta nâng cấp code, cho 2 class trên tuân thủ một outline - ta sẽ tạo dùng INTERFACE với mục đích cung cấp một lớp làm mẫu chứa outline, các lớp học theo mẫu này chỉ có nhiệm vụ triển khai phát triển lên từ lớp mẫu.
-> 
-> ⚙️ ví dụ: Lớp Cha là interface có 2 phương thức cần lớp con triển khai là ChàoChaMẹTrướcKhiĐiHọc(), ChàoChaMẹKhiĐiHọcVề() --> Lớp Con là Class - Con 1 , Con 2 đều phải triển khai 2 phương thức trên và nếu muốn nó có thể triển khai thêm các phương thức khác của riêng nó
