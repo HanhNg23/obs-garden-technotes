@@ -612,4 +612,83 @@ Hàm là một object cần khái quát
 > 	}
 > 	//pass the `handler` type `DelegateMethod` as a parameter of `MethodWithCallback` method
 > 	MethodWithCallback(1, 2, handler);
-> 	
+
+
+#### 2. KHAI BÁO, KHỞI TẠO VÀ SỬ DỤNG DELEGATE [See](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/how-to-declare-instantiate-and-use-a-delegate)
+ 
+1. <span style="color:#8d8d2a">Sử dụng Named Method</span>
+	- Named method là ta đang định nghĩa sẵn một hàm. Khi khởi tạo một loại delegate nào đó thì ta có thể sử dụng hàm được định nghĩa sẵn và truyền hàm đó như một parameter.
+    - >ví dụ
+		```Csharp
+			// Declare a delegate.
+			delegate void WorkCallback(int x);
+					
+			// Define a named method.
+			void DoWork(int k) { /* ... */ }
+					
+			// Instantiate the delegate using the method as a parameter.
+			WorkCallback d = obj.DoWork;
+		```
+
+
+2. <span style="color:#8d8d2a">Sử dụng Anonymous Method</span>
+	- Vì Delegate sinh ra để trỏ, lưu trữ địa chỉ của hàm nào đó = Tên-hàm-nào-đó() và sau đó delegate sẽ gọi hàm này thay cho gọi hàm trực tiếp
+	- Nhưng có tình huống ta làm biếng tạo sẵn hàm - named method - một hàm có tên gọi đàng hoàng --> LÀM BIẾNG ĐẶT TÊN HÀM, NHƯNG VẪN MUỐN NHỜ DELEGATE GỌI GIÙM đến một hàm chỉ có mã lệnh chứ không khai báo hàm cụ thể (có tên) --> Anonymous method RA ĐỜI
+	- Anonymous method - C# cho phép bạn khởi tạo một delegate bằng cách định nghĩa trực tiếp một code block mà ta muốn delegate xử lý. <span style="color:#555555">*(Codeblock này có thể viết theo kiểu lambda expression || anonymous method và codeblock phải đúng style của delegate trên.)*</span>
+	- >ví dụ - declare an anonymous method:
+		```CSharp
+		FDelegate fNaoDo = delegate(int x)
+		{
+			//nội dung hàm nằm ở đây || xử lí hàm nằm ở đây
+		}
+		// Instantiate NotifyCallback by using an anonymous method.
+		NotifyCallback del3 = delegate(string name)
+		    { Console.WriteLine($"Notification received for: {name}"); };
+		```
+
+3. <span style="color:#8d8d2a">Sử dụng Lambda Expression</span> - <span style="color:#91819c">Nhìn hàm mà giống biểu thức tính toán</span>
+	- Là trường hợp đặc biệt của ANONYMOUS FUNCTION - Tức là nó cũng là hàn ẩn danh - anonymous method - nhưng được viết ở mức độ rút gọn nhất có thể
+	---
+	- <span style="color:#91819c">B1. CĂN ĐẦU VÀO CỦA BIỂU THỨC Y CHANG ĐẦU VÀO CỦA HÀM ĐANG ĐƯỢC TRỎ</span>
+	 Ví dụ nếu hàm đang trỏ có kiểu Void-Int - trả về Void và nhận tham số kiểu Int --> thì biểu Lambda khởi đầu = Tham số hàm. Nếu hàm ko có tham số đầu vào thì dùng cặp ngoặc tròn `()`
+		```CSharp
+		FDelegate fNaoDo = BIEU THUC LABDA
+		FDelegate fNaoDo = (int x) //cho hàm có nhận tham số
+		FDelegate! fNaoDo = () //cho hàm không yêu cầu tham số
+		```
+	
+	- <span style="color:#91819c">B2. SAU THAM SỐ HÀM LÀ MŨI TÊN => TRỎ ĐẾN THÂN HÀM</span>
+		```CSharp
+		FDelegate fNaoDo = (int x) =>
+		FDelegate! fNaoDo = () =>
+		FDelegate fNaoDo = (int x, int y) =>	
+		```
+	
+	- <span style="color:#91819c">B3. NẾU THÂN HÀM CHỈ CÓ 1 LỆNH DUY NHẤT , THÌ KO CẦN NGOẶC NHỌN {}
+		CÒN THÂN HÀM CÓ NHIỀU HƠN 1 LỆNH -> THÌ BẮT BUỘC PHẢI {BODY HÀM}</span>
+		```CSharp
+		FDelegate fNaoDo = (int x) => 1 LỆNH NÒA ĐÓ
+		FDelegate fNaoDo = (int x) => 
+		{
+			NHIỀU LỆNH VIẾT NHƯ HÀM BÌNH THƯỜNG;
+		}
+		```
+	
+> [!TIP]-  <span style="color:#8d8d2a">**Quy tắc rút gọn tối đa**</span>
+> - Nếu thân hàm chỉ có 1 lệnh --> Không cần dùng {}, nếu lệnh có return, bỏ return luôn
+> () => 1 lệnh;
+> (int x) => 1 lệnh;
+> ---
+> - Nếu thân hàm có từ 2 lệnh trở lên, bắt buộc phải {Body hàm} và kèm return như hàm bình thường, ko ưu tiên gì cả
+> () => {
+> 		code các lệnh;
+> 		return ???;
+>       }
+> ---
+> - Nếu đầu vào không có gì cả, thì sẽ là () =>
+> - Nếu đầu vào có 1 tham số, bỏ luôn dấu ngoặc truyền tham số `()` và bỏ luôn cả kiểu dữ liệu. Rút gọn và ghi là : s => lệnh, x => lệnh, a => lệnh,...(với s, x , a đại diện cho tham số đầu vào)
+> - Nếu đầu vào từ 2 3 tham số, bỏ luôn kiểu dữ liệu, nhưng phải ghi tên tham số trong ngoặc (các tham số đầu vào)
+>   (a, b) => lệnh
+>   (a, b, c) => lệnh
+
+🔗[Lambda expressions Operator in C#](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
