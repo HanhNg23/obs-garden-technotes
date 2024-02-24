@@ -758,7 +758,9 @@ Hàm là một object cần khái quát
 #### Tổ chức code theo mô hình kiến trúc 3 lớp 
 Mô hình 3 lớp - layer gồm có 3 thành phần chính:
 
-<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200103194305/NET-3-Tier-Architecture.png" width="40%" height="auto" />
+<p style="text-align:center;">
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200103194305/NET-3-Tier-Architecture.png" width="40%" height="auto"/>
+</p>
 
 - Presentation Layer (GUI): lớp có nhiệm vụ chính giao tiếp với người dùng, tương tác với người dùng. Nó gồm các thành phần giao diện (win form, web form,...) và thực hiện các công việc như nhập liệu, hiển thị dữ liệu, kiểm tra tính đúng đắn về format của dữ liệu trước khi gọi lớp Business Logic Layer (BLL) xử lý.
 - Business Logic Layer (BLL): layer phân ra thành 2 nhiệm vụ:
