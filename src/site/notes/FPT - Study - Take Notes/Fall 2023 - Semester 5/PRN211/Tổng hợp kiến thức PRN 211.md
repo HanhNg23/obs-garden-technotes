@@ -64,3 +64,60 @@
    ==> <span style="color:#91819c">Platform-independent</span> ra đời - thực thi code của một chương trình trên bất kì hệ điều hành OS nào với điều kiện phải cài đặt môi trường ảo riêng để chạy trên từng loại OS cụ thể - runtime environment.
   > Thực thi code Java trên đa nền tảng sẽ thông qua khái niệm Platform-independent - code của Java sẽ được chạy trên môi trường ảo là **JVM -Java Virtual Machine** - Platform-dependent, JVM tùy loại OS sẽ được thiết kế riêng để cài đặt. Vd như Mac OS X, Window, Linux thì sẽ có JVM riêng cho mỗi OS trên. ([See](https://www.geeksforgeeks.org/java-platform-independent/))
 
+## I. .NET, .NET FRAMEWORK, .NET CORE 
+   🫱 [See](https://learn.microsoft.com/en-us/dotnet/core/introduction)
+- .NET là một cross platform - chạy đa nền, app chạy không phụ thuộc OS - write once run anywhere (WORA)
+- .NET là nền tảng môi trường, bộ thư viện, cung cấp toàn bộ tài nguyên cho việc chạy app .NET, C#, VB.NET, C++.NET
+- .NET có thể được viết bằng ngôn ngữ lập trình C#, F#, Visual Basic. 
+   > Trong chương trình học của môn PRN211 -> viết .NET bằng C# trên visual-studio
+- Hệ sinh thái .NET gồm có (theo thứ tự thời gian)
+	- .NET Framework -- work as JDK idea of Java -- Hiện tại chỉ work với window
+	- Mono -- triển khai từ .NET Framework nhưng thiết kế để trở thành cross-platform (Một framework hoạt động trên nhiều hệ điều hành khác nhau)
+	- .NET (Core) -- .NET CROSS PLATFORM - là bản kế thừa open source của .NET Framework nhưng được thiết kế để hoạt động như một cross-platform. Used for Linux, macOS, and Windows apps. 
+> [.Net History](https://learn.microsoft.com/en-us/dotnet/core/introduction#net-history)
+- Muốn .NET chạy được trên đa nền tảng, phải cài đặt 2 Binary distributions sau:
+	- .NET SDK - bộ tool, thư viện và runtimes cho việc phát triển, xây dựng và kiểm tra apps .NET
+	> (tương tự JDK - bộ công cụ cho nhà lập trình viên ứng dụng java)
+	- .NET Runtimes - bộ runtimes và thư viện hỗ trợ running apps 
+	
+- Trình biên dịch trong .NET - Compilation - [See](https://learn.microsoft.com/en-us/dotnet/core/introduction#compilation)
+	- Code được viết ra cho ứng dụng .NET được biên dịch sang ngôn ngữ trung gian IL - Intermediate Language (tương tự byte code - giống style JAVA).
+	- IL - a compact code format - một định dạng mã nhỏ, tiêu tốn ít dung lượng, code format này có thể sử dụng trên trên nhiều OS và kiến trúc
+	- Để biên dịch IL sang ngôn ngữ máy để được thực thi chương trình trên CPU thì 2 mô hình biên dịch sẽ được dùng là JIT(Just-In-Time) và AOT(Ahead-Of-Time) - và quá trình chạy code/thực thi diễn ra trong môi trường ảo - runtime environment có tên gọi là CLR - Common Language Runtime (a virtual machine - of Microsoft .NET framework that manages the execution of .NET programs)
+	- ![](https://i.imgur.com/WjdN2zg.png)
+	> [link](https://www.baeldung.com/cs/runtime-vs-compile-time)
+
+
+## II. CẤU TRÚC DỰ ÁN C# - SOLUTION, PROJECT, FILE MÃ NGUỒN
+1. <span style="color:#00b0f0">**Cấu trúc solution/project của C#**</span>
+	- C# quản lý mã nguồn theo cấu trúc cây gần giống với cấu trúc thư mục và bao gồm 2 cấp độ cơ bản: Project và Solution
+2. <span style="color:#00b0f0">**Project trong C#**</span>
+	- Project là cấp độ quản lý mã nguồn quan trọng vì mỗi project sau khi biên dịch sẽ tạo ra một chương trình.
+	- Mỗi project mặc định đều chứa:
+		- Các file mã nguồn: là các file văn bản có phần mở rộng .cs (C Sharp)
+		- Các file cấu hình của chương trình: là file xml có phần mở rộng .config
+		- Các thư viện được tham chiếu tới - References: là danh sách các file thư viện chuẩn của .NET framework, hoặc thư viện từ các hãng thứ 3, hoặc từ chính các project khác, chuyên chứa các class được sử dụng bởi class trong project này
+		- Các thuộc tính - Properties: bao gồm nhiều loại thông tin khác nhau quyết định những tính chất quan trọng của project, như phiên bản của nào .NET Framework được sử dụng, loại chương trình mà dự án này sẽ được dịch thành là loại nào, các tài nguyên được sử dụng trong project gồm gì, cấu hình của ứng dụng, ...
+3. <span style="color:#00b0f0">**Solution trong C#**</span>
+	- Solution là cấp độ quản lý mã nguồn cao nhất trong C# cho phép quản lý tập trung nhiều project
+	- Mỗi Solution trong C# có thể chứa nhiều project. 
+4. <span style="color:#00b0f0">**Cấu trúc file/thư mục của C# project**</span>
+	- Tên thư mục được đặt tên theo "Solution Name" do người dùng đặt tên tại phần tạo project.
+	- Mỗi project được tạo ra sẽ đặt trong một thư mực con của thư mục solution ở trên và có cùng tên với "project name" do người dùng đặt
+	- Trong mỗi thư mục project là các file con
+	- Các File cấu hình của solution được lưu trong file có phần đuôi là .sln
+		- ![](https://tuhocict.com/wp-content/uploads/2019/01/3-solution-folder.png)
+	- Thông tin cấu hình của mỗi project được lưu trong file có tên trùng tên dự án và có phần đuôi là .csproj
+		- ![](https://tuhocict.com/wp-content/uploads/2019/01/3-project-folder.png)
+5. <span style="color:#00b0f0">**Thư mục bin**</span>
+	- Sau khi biên dịch project thành công, trong thư mục của nó sẽ xuất hiện một thư mục con có tên là bin 
+	- Biên dịch ở chế độ debug, thư mục bin sẽ xuất hiện thư mục con "Debug" Các file chương trình sau khi biên dịch ở chế dộ này xong sẽ sẽ xuất hiện trong thư mục "Debug." có đường chỉ dẫn chung **"{tên solution}\{tên project}\bin\{Debug}"**
+6. <span style="color:#00b0f0">**NET Assembly**</span>
+	- Nói rằng mỗi project sau khi biên dịch xong sẽ thành một chương trình --> cách nói “chương trình” không hoàn toàn phù hợp đối với .NET framework. 
+	- --> Trong NET framework, mỗi project sau khi biên dịch đều trở thành một file chứa bytecode CIL - File mã CIL này được gọi là *Assembly*. 
+	- .NET framework phân biệt hai loại assembly: 
+		- một loại có thể tự nạp vào CLI và thực thi; 
+		- một loại không thể tự mình nạp vào CLI mà cần phải có một assembly thuộc loại thứ nhất gọi, hoặc được một tiến trình khác gọi. 
+		- --> Loại assembly thứ nhất được lưu trong file có phần mở rộng .exe, tương tự như các file chương trình thực thi khác trong Windows. 
+		- --> Loại assembly thứ hai được lưu trong các file có phần mở rộng .dll (Dynamic Link Library), tương tự như các file thư viện của Windows. 
+		- ----> ***Việc biên dịch ra .exe hay .dll phụ thuộc vào loại project.***
