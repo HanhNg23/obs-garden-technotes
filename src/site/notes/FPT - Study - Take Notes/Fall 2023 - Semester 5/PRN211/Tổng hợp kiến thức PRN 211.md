@@ -549,6 +549,7 @@ Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là 
 | 👆 tên gọi đại diện nhóm                            | 👆 tên gọi đại diện nhóm                           | 👆 tên gọi đại diện nhóm                           |                   |
 | hàm cùng style void - void                          | hàm cùng style int - void                          | hàm cùng style bool-void                            |                   |
 |                                                     |                                                    |                                                     |                   |
+
 <span style="color:#d4a216">===> *ĐẠI DIỆN CHO MỘT ĐỐNG CÁC HÀM CÓ CÙNG STYLE --> gọi là DELEGATE*</span>
 - <span style="color:#555555">ví dụ ở đây có 3 đại diện: đại diện hàm void - void FV();, đại diện hàm int - int FR(); đại diện hàm bool - bool FB();</span>
 	- <span style="color:#555555"> void - void -> chỉ loại hàm có kiểu trả về là kiểu void, ko nhận tham số gì thì gọi là void</span>
