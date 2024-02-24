@@ -541,23 +541,3 @@ Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là 
 
 - <span style="font-weight:bold; color:#555555">Hàm là một object cần khái quát</span>
 
-| -                                                   | -                                                  | -                                                   |                   |
-| --------------------------------------------------- | -------------------------------------------------- | --------------------------------------------------- | ----------------- |
-| void FV1(){}                                        | int FR1(){}                                        | bool FB(){}                                         | ...nhiều hàm khác |
-| void FV2(){}                                        | int FR2(){}                                        | bool FB2(){}                                        |                   |
-| style FUNCTION trả về void                          | style FUNCTION trả về int                          | style FUNCTION trả về bool                          |                   |
-| <span style="color:#8d8d2a">style void FV();</span> | <span style="color:#8d8d2a">style int FR();</span> | <span style="color:#8d8d2a">style bool FB();</span> |                   |
-| 👆 tên gọi đại diện nhóm                            | 👆 tên gọi đại diện nhóm                           | 👆 tên gọi đại diện nhóm                            |                   |
-| hàm cùng style void - void                          | hàm cùng style int - void                          | hàm cùng style bool-void                            |                   |
-|                                                     |                                                    |                                                     |                   |
-<span style="color:#91819c">===> ĐẠI DIỆN CHO MỘT ĐỐNG CÁC HÀM CÓ CÙNG STYLE --> gọi là DELEGATE 
-(ví dụ ở đây có 3 đại diện: đại diện hàm void - void FV();, đại diện hàm int - int FR(); , đại diện hàm bool - bool FB();)</span>
-> void - void -> chỉ loại hàm có kiểu trả về là kiểu void, ko nhận tham số gì thì gọi là void
-> int - void -> chỉ loại hàm có kiểu trả về là int, ko nhận tham số gì thì gọi là void
-> bool - void -> tương tự
-- <span style="color:#91819c">Hình minh họa hoạt động của delegate</span> 
-  ![](https://i.imgur.com/AQ7KdlL.png)
-  > <span style="color:#8d8d2a">Qua hình trên ta đã khái quát ra được 2 DATA TYPE = 2 loại delegate là FV và FR</span>
-
-> [!NOTE] 
-> Theo định nghĩa của C#, Delegate là một loại chuyên đóng gói một phương thức nào đó ~~ tương tự như hàm con trỏ trong C và C++. Nó khác hàm con trỏ C ở chỗ là các delegates này là object-oriented, type safe và secure. Các delegates này được tạo ra bởi class Delegate trong .NET. Tên của loại delegate đó sẽ phụ thuộc vào tên mà ta định nghĩa cho delegate trên.
