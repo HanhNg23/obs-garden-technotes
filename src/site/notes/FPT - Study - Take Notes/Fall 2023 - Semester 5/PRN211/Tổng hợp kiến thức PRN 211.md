@@ -529,6 +529,7 @@ Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là 
 #### 1. KHÁI NIỆM DELEGATE
 
 <span style="color:#8d8d2a">**Giới thiệu**</span> [See](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/#delegates-overview)
+
 - Khái niệm Datatype -> khái quát - gom và đặt tên
 - Data type - đại diện một tập hợp chung. Ví dụ tập hợp kiểu int - data type tên int - đây là tên đại diện cho một tập hợp gồm các số nguyên. 
 	- -> Định nghĩa tập hợp thuộc kiểu int là tập hợp các giá trị nguyên thì tập hợp biểu diễn như sau: int là 4 byte có dấu -> tập hợp giá trị của tập hợp tên int {-2,147,483,648, 2,147,483,647}
@@ -538,7 +539,7 @@ Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là 
 
 <span style="font-weight:bold; color:#8d8d2a">**Hình dung mô tả ?**</span>
 
-<span style="font-weight:bold; color:#555555">Hàm là một object cần khái quát</span>
+Hàm là một object cần khái quát
 
 | Hàm kiểu void                                       | Hàm kiểu retrun                                    | Hàm kiểu trả về boolean                             |                   |
 | --------------------------------------------------- | -------------------------------------------------- | --------------------------------------------------- | ----------------- |
@@ -565,3 +566,16 @@ Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là 
 > [!NOTE] 
 > Theo định nghĩa của C#, Delegate là một loại chuyên đóng gói một phương thức nào đó ~~ tương tự như hàm con trỏ trong C và C++. Nó khác hàm con trỏ C ở chỗ là các delegates này là object-oriented, type safe và secure. Các delegates này được tạo ra bởi class Delegate trong .NET. Tên của loại delegate đó sẽ phụ thuộc vào tên mà ta định nghĩa cho delegate trên.
 
+ <span style="color:#8d8d2a">**Gọi hàm cụ thể**</span>
+> [!QUESTION] Khi tập hợp các hàm vào trong nhóm, làm sao để lấy 1 thằng trong nhóm ra nói chuyện ?
+> Khi ta khái quát để xây dựng DATA TYPE --> Sau đó ta TÁCH BẠCH để DATATYPE VARIABLE = VALUE với VALUE là từ 1 trong những thằng thuộc tập hợp DATATYPE đó, VARIABLE sẽ là một tên gọi đại diện cho tập hợp DATA TYPE đó ?
+
+<span style="color:#00b0f0">**Trả lời**</span>
+
+**ỨNG DỤNG khái niệm TÁCH BẠCH để gọi hàm cụ thể** 
+
+- TÁCH BẠCH -- đề cập đến cụ thể  == đề cập đến một hàm cụ thể nào đó để sử dụng
+- <span style="color:#9a7db0">**Ví dụ lấy các đối tượng từ "hình minh họa hoạt động của delegate" ở trên**</span>
+	- Nói FV x; --> sắp nói đến một hàm void - void --> x đại diện cho một phần tử bất kì thuộc tập hợp FV --> x thuộc FV
+	- x = FV1; --> gán tên hàm là FV1 cho x (<span style="color:#555555">FV1 này là một phần tử nằm trong tập hợp FV</span>) --> Vì FV1 là hàm kiểu void - void nên x sẽ trỏ đến hàm FV1 thông qua tên gọi hàm là "FV1" (<span style="color:#00b0f0">*Chú ý: gọi hàm nhưng không thêm ngoặc '()'*</span>) 
+	- Tương tự: Nói FR x = FR2 --> x là một hàm FR2 == x sẽ trỏ đến hàm FR2 thuộc tập hợp hàm FR có style int - void
