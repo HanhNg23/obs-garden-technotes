@@ -774,7 +774,6 @@ Mô hình 3 lớp - layer gồm có 3 thành phần chính:
 
 #### Tư duy thiết kế code - cấu trúc code của bài FAP.V2
 
-
 | UI                              | Chứa data phục vụ Form           | Định dạng dữ liệu phục vụ                                    |
 | ------------------------------- | -------------------------------- | ------------------------------------------------------------ |
 | Class Form ListStudents.cs - UI | Class StudentRepositorySqlServer | Class Student Id, Name, Yob  {get; set;} cho từng thuộc tính |
@@ -786,9 +785,8 @@ Mô hình 3 lớp - layer gồm có 3 thành phần chính:
 | btnSearch()                 | Search(id)                  |                                                      |
 |                             |                             |                                                      |
 
-
-><span style="color:#91819c">Tôi muốn chuyển sang xài MYSQL, ta cần 1 class khác cung cấp data phục vụ Form nhưng data tôi muốn lấy từ MYSQL</span>
-> giải quyết -> Chỉ cần thêm 1 class ở vùng phục vụ data cho form, form không cần đổi, nhờ bạn code
+<span style="color:#91819c">Vấn đề</span> -> Tôi muốn chuyển sang xài MYSQL, ta cần 1 class khác cung cấp data phục vụ Form nhưng data tôi muốn lấy từ MYSQL
+<span style="color:#00b0f0">Giải quyết</span> -> Chỉ cần thêm 1 class ở vùng phục vụ data cho form, form không cần đổi, nhờ bạn code
 
 | UI                              | Chứa data phục vụ Form             | Định dạng dữ liệu phục vụ                                    |
 | ------------------------------- | ---------------------------------- | ------------------------------------------------------------ |
@@ -800,7 +798,6 @@ Mô hình 3 lớp - layer gồm có 3 thành phần chính:
 | btnDelete()                     | Delete(id)                         |                                                              |
 | btnSearch()                     | Search(id)                         |                                                              |
 |                                 |                                    |                                                              |
-
 
 > [!QUESTION]+ Nhận xét 
 > 🌸 Muốn xài SQLServer thì dùng class StudentRepositorySqlServer
