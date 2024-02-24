@@ -111,7 +111,7 @@
 		- --> Loại assembly thứ hai được lưu trong các file có phần mở rộng .dll (Dynamic Link Library), tương tự như các file thư viện của Windows. 
 		- ----> ***Việc biên dịch ra .exe hay .dll phụ thuộc vào loại project.***
 ## III. CODING CONVENTION - QUY ƯỚC ĐẶT TÊN TRONG DỰ ÁN
-#### NGOÀI CLASS
+#### Ngoài Class
 1. TÊN SOLUTION  
 	- Pascal Case - chữ hoa từng đầu từ, danh từ
 	- Template: <span style="color:#0070c0">[TênCôngTy.TênSolution]</span>
@@ -145,7 +145,7 @@
     >       *internal - là một truong những từ khóa của .NET modifier(internal, public, private, protected, protected internal) - quy định phạm vi truy cập, liên quan đến quyền truy xuất thuộc tính của đối tượng.*
     >        *Trong class, nếu các thuộc tính khai báo trong class không định nghĩa quyền truy cập modifier(private, public,..) thì mặc định các thuộc tính đấy là private.*
 
-#### TRONG CLASS
+#### Trong Class
 5. TÊN HÀM (method): 
 	- VERB + OBJECT - Pascal Case, chữ hoa từng đầu từ, có động từ đứng đầu
 	> Ví dụ: Print(), ToString(), Parse(), Compare(), Equals() ( giống và khác JAVA)	
@@ -478,4 +478,50 @@ Student y = new(); //bỏ luôn cả Student do đã biết trước đó y là 
 > [!Tip] new {} & ()
 > - new object theo Constructor default thì <span style="color:#d4a216">khởi tạo các giá trị bằng cách gán các giá trị của các thuộc tính vào ngoặc nhọn</span> theo format {Tên property = value}
 > - new object theo Constructor có tham số thì <span style="color:#d4a216">khởi tạo các giá trị trong ngoặc tròn ()</span>
+
+
+## VI. TỔNG KẾT NHANH VỀ DATATYPE
+1. Data Type là gì - Kiểu dữ liệu là gì ?
+	- Là cách ta hoặc máy tính biểu diễn, thể hiển ra các thông tin quanh cuộc sống của và cách chúng được lưu trữ trong RAM, ví dụ các loại dữ liệu: số, chữ, ngày, tháng, đúng/sai, ...
+2. C# cung cấp nhiểu loại kiểu dữ liệu khác nhau, tùy vào ý nghĩa, mục đích, đặc trưng của loại kiểu dữ liệu đó
+	- 2.0 Xét theo tiêu chí biểu diễn thông tin ra bên ngoài cho ta nhìn thấy - ta có các kiểu dữ liệu sau:
+		-> Số: số nguyên, số thực, số nhìn dạng nhị phân (binary), số thập phân (decimal), bát phân(octal), thập lục phân (hexa)
+		-> Chữ: 1 kí tự nào đó
+		-> Chuỗi: nhiều kí tự thành thành 1 từ, 1 câu
+		-> Ngày tháng
+		-> Đúng sai
+		...
+	- 2.1 Xét theo tiêu chí cách dữ liệu lưu trữ trong RAM, ta có 2 kiểu dữ liệu sau:
+		-> VALUE TYPE: tham trị, tốn 1 vùng RAM để lưu giá trị 
+		[BIẾN – VÙNG – RAM – LƯU – THẲNG – VALUE - LUÔN]
+		> ví dụ: int (Int32), long (Int64), float(Single), double (Double)
+		-> REFERENCE TYPE: tham chiếu, tốn 2 vùng ram để lưu giá trị 
+		[BIẾN – “CON TRỎ”] --> TRỎ VÙNG NEW OBJECT TRONG HEAP - "tức là [OBJECT ĐƯỢC NEW]"
+		> ví dụ: 
+		> Object do hệ thống tạo sẵn: string(String), object(Object), Random, ArrayList, List<>,….
+		> Custom object - object do người dùng đặt: ví dụ: Student, Lecture, DeadRacer, Rectangle, Shape, ... 
+	- 2.2 Xét riêng cho kiểu REFERENCE - Kiểu tham chiếu trong C#
+		- Có 2 loại kiểu tham chiếu:
+		   + Có sẵn do .NET cung cấp sẵn: string, object, Random, List,…
+		   + Do ta tự tạo ra để lưu trữ info nào đó : Student, Lecturer,…
+		- Tạo dữ liệu kiểu tham chiếu ra dùng
+		```CSharp
+		public class XXX`
+		{
+			_backed fields;
+			Properties;
+			Methods(???); 
+		//HÀM XỬ LÍ INFO GÌ ĐÓ, XỬ LÍ INFO CÓ SẴN BÊN TRONG CÁC _backedfields, BÊN TRONG Prop hoặc gọi hàm khác, hoặc nhận các tham số đưa vào
+				}
+		```
+		```CSharp
+		  public interface YYY
+		   {
+		   }
+		```
+		- 2 kiểu Class và Interface rất truyền thống giúp ta lưu trữ và xử lý các info --> Lưu trữ info qua biến/backed field và hàm/method
+3. Kiểu dữ liệu loại DELEGATE - ỦY QUYỂN
+	- C# đưa ra 1 cách khác biệt nữa để tạo ra 1 loại data type mới thay vì dùng để lưu trữ info và xử lý (class/interface), kiểu mới này nó đi sưu tập tên của các hàm mà ở đâu đó trong khắp cái app của mình. --> 1 kiểu dữ liệu mới, 1 từ khóa mới để tạo object chuyên đi gom tên của các hành động >>>> GỌI LÀ DELEGATE - ỦY QUYỀN
+	> *Thay vì dùng Class, Interface để lưu cả info + hàm xử lí info. --> Bây giờ ta dùng delegate để tạo 1 không gian CHỈ ĐỂ **LƯU TRỮ TÊN CỦA CÁC HÀM***
+	- 🔗 👉 Tìm hiểu về Delegate [[FPT - Study - Take Notes/Fall 2023 - Semester 5/PRN211/Tổng hợp kiến thức PRN 211#VII. MỞ RỘNG SO VÓI OOP - DELEGATE & EVENT\|#VII. MỞ RỘNG SO VÓI OOP - DELEGATE & EVENT]]
 
