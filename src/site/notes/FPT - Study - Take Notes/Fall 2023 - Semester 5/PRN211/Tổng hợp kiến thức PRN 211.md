@@ -692,3 +692,50 @@ Hàm là một object cần khái quát
 >   (a, b, c) => lệnh
 
 🔗[Lambda expressions Operator in C#](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
+
+#### 4. ỨNG DỤNG CỦA DELEGATE - DELEGATE DÙNG ĐỂ LÀM GÌ ??
+1. <span style="color:#8d8d2a">**Dùng để mở rộng khả năng của 1 object bất kì**</span>
+	- Tức là 1 Object được thiết kế trước đó, có thể làm được thêm nhiều công việc mà lúc thiết kế ra nó, người ta chưa nghĩ ra, hoặc dự kiến object sẽ làm được 1 điều gì đó nhưng chưa biết cụ thể là gì -> đến 1 lúc nào đó sẽ làm được (LOOSE COUPING - gắn kết lỏng lẻo)
+2. <span style="color:#8d8d2a">**Dùng để xử lý các sự kiện/event**</span> [See](https://howkteam.vn/course/khoa-hoc-lap-trinh-c-nang-cao/event-voi-delegate-trong-c-4041) 
+	- Ý tưởng của event -> mỗi khi đụng tới object tức điều gì đó xảy ra trên Object (đặc biệt là Object liên quan đến Windowform/App Desktop 
+	  --> sẽ tự động gọi tới tất cả các sự kiện/hành động tương ứng với các sự thay đổi của object này 
+	  [Ví dụ sự kiện Button.DoubleClick Event của class Button](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.button.doubleclick?view=windowsdesktop-8.0)
+	- Các Object trên Windowform thì nó là 1 Object gần hoàn chỉnh
+	- Nó có các đặc tính, hành động như mọi class
+	  > ví dụ instance của Class Button [See](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.button?view=windowsdesktop-8.0)
+		```CSharp
+		private Button btnSave;
+		btnSave = new Button();
+		btnSave.Location = new Point(719, 482);
+		btnSave.Name = "btnSave";
+		btnSave.Size = new Size(75, 23);
+		btnSave.TabIndex = 21;
+		btnSave.Text = "Save";
+		btnSave.UseVisualStyleBackColor = true;
+		btnSave.Click += btnSave_Click;		
+		```
+	- Gọi là gần hoàn chỉnh vì nó hiện thị trên màn hình ngon lành, nhưng nó còn vô dụng - click vào nó không biết làm gì vì phần này tùy thuộc vào ai đó - ai đó là dev xài nút này khi viết code
+	- --> Để nút bấm làm được điều gì thì cần dev viết nốt đoạn code làm gì khi bị click
+		```CSharp
+			class Button
+			{
+				- name: ____
+				- text: ____
+				- color: _____
+				Click(tên hàm here, delegate nhận vào, xử-lý-gì-đó)
+				{
+				   làm gì đâu biết, chừa sẵn chỗ để nhét hàm khi có ai xài nút này, dev nào xài thì đưa code vào
+				   -> Đưa code vào đưa hàm vào
+				   Gọi hàm của dev bên ngoài đưa vào() //biến delegate 'nhận vào' trỏ tới 'tên hàm' để yêu cầu xử lý
+				}
+			}
+		
+			HàmXửLýClick() 
+			{
+				code của dev xài nút bấm làm cái gì đó
+			}
+			//hậu trường xử lý kéo thả nút bấm, code, property
+			Click += HàmXửLýClick;   //gán con trỏ hàm cho sự kiện Click chừa chỗ
+			//Tui click button mở rộng khả năng của tôi, chấp nhận xài hàm của anh em bên ngoài, tui button đưa hàm cho button tui đi, tui thay bạn gọi hàm thực thi cho
+			//Window kiểm soát click, gọi nút bấm click khi user nhấn nút, nút được windows đẩy chạy click
+		```
