@@ -744,8 +744,28 @@ Hàm là một object cần khái quát
 - Cách viết code hiện nay gọi là style ALL-IN-ONE (Nhét tất vào một chỗ)
 	- 1 project của 1 solution chứa toàn bộ form - UI - trong form chứa code xử lý sự kiện + chứa luôn data đứng sau form 
 	- 1 form của 1 project chứa vừa design & code, event & code data luôn
-> Nếu ta cần data không phải từ Ram mà là từ database SQLServer, code nên sửa ntn, All-In-One còn đủ tốt không
-> --> Không tốt vì code event trộn với code xử lý data (code nghiệp vụ khách hàng: không mượn quá 5 cuốn, tính giảm giá)
-> --> Không đủ tốt vì fix với SQLServer
-> --> Nếu Data không từ SQLServer mà từ MySQL, .... 
-> --> Code phải copy paste sang dự án khác, sửa - dân dev gặp nhiều ác mộng trong đó ác mộng maintain 2 app đồng thời SQLServer, MySQL. UI thì giống, DB khác, câu lệnh Select khác --> Dẫn tới tái sử dụng kém
+> <span style="color:#6a5858">Nếu ta cần data không phải từ Ram mà là từ database SQLServer, code nên sửa ntn, All-In-One còn đủ tốt không</span>
+> <span style="color:#6a5858">--> Không tốt vì code event trộn với code xử lý data (code nghiệp vụ khách hàng: không mượn quá 5 cuốn, tính giảm giá)</span>
+> <span style="color:#6a5858">--> Không đủ tốt vì fix với SQLServer</span>
+> <span style="color:#6a5858">--> Nếu Data không từ SQLServer mà từ MySQL, ....</span> 
+> <span style="color:#6a5858">--> Code phải copy paste sang dự án khác, sửa - dân dev gặp nhiều ác mộng trong đó ác mộng maintain 2 app đồng thời SQLServer, MySQL. UI thì giống, DB khác, câu lệnh Select khác --> Dẫn tới tái sử dụng kém</span> 
+
+---
+**TỐI ƯU HÓA TỔ CHỨC CODE**
+- --> Tách UI (Form và Event) ra riêng
+- --> Xử lý data ra 1 chỗ riêng 
+---
+#### Tổ chức code theo mô hình kiến trúc 3 lớp 
+Mô hình 3 lớp - layer gồm có 3 thành phần chính:
+
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200103194305/NET-3-Tier-Architecture.png" width="40%" height="auto" />
+
+- Presentation Layer (GUI): lớp có nhiệm vụ chính giao tiếp với người dùng, tương tác với người dùng. Nó gồm các thành phần giao diện (win form, web form,...) và thực hiện các công việc như nhập liệu, hiển thị dữ liệu, kiểm tra tính đúng đắn về format của dữ liệu trước khi gọi lớp Business Logic Layer (BLL) xử lý.
+- Business Logic Layer (BLL): layer phân ra thành 2 nhiệm vụ:
+	- Nơi đáp ứng các yêu cầu đối với thao tác dữ liệu gửi từ GUI layer, xử lý chính nguồn dữ liệu từ Presentation Layer trước khi truyền xuống Data Access Layer và lưu xuống hệ quản trị CSDL.
+	- Nơi kiểm tra các ràng buộc, tính toàn vẹn và hợp lệ dữ liệu, thực hiện tính toán - xử lý các yêu cầu nghiệp vụ trước khi trả kết quả về Presentation Layer
+   > Trong C# web app ta xây dựng lớp này qua project Service
+- Data Access Layer (DAL): Lớp có chức năng giao tiếp với hệ quản trị CSDL như thực hiện các công việc liên quan đến lưu trữ và truy vấn CRUD dữ liệu
+  > Trong C# web app ta xây dựng lớp này qua project Repository
+    
+<span style="color:#91819c">  Nguồn:[Mô hình 3 lớp - top dev](https://topdev.vn/blog/mo-hinh-3-lop-la-gi/)</span>
