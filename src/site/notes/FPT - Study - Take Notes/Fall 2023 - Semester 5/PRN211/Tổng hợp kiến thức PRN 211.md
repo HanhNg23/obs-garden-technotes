@@ -587,3 +587,29 @@ Hàm là một object cần khái quát
 > - <span style="color:#8d8d2a">Ngoài ra, DELEGATE còn có tính năng mở rộng của việc gọi hàm -</span> [Multicast Delegates](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/how-to-combine-delegates-multicast-delegates)
 > 	- Nếu ta có int x = 4; ta có thể chơi x += 5 == x = (current) x + 5 
 > 	--> DELEGAT cũng có thể làm điều đó bằng cách FV y = FV1; y += FV1; y =+ FV2 --> bảo y trỏ đến hàm FV1 - thực thi xong - trỏ hàm FV1 tiếp theo thực thi tiếp - thực thi xong - trỏ hàm FV2 thực thi.
+
+
+> [!NOTE]- Code ví dụ minh họa sử dụng Delegate  [See](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/using-delegates)
+>    ```CSharp
+>    //Khai báo một biến tham chiếu thuộc kiểu Delegate = khai báo một thằng delegate / một biến thuộc Delegate và đặt tên là Callback - biến/delegate này dùng tham chiếu đến các hàm có kiểu dữ liệu trả về là void và tham số truyền vào là string. --> quá trình này đồng nghĩa là quá trình tạo ra một Data Type mới - một tập hợp mới (tập hợp các hàm kiểu void - string) có tên Callback 
+> 	public delegate void Callback(string message);
+> 	
+> 	// Create a method for a delegate.
+> 	public static void DelegateMethod(string message)
+> 	{
+> 	    Console.WriteLine(message);
+> 	}
+> 	// Instantiate the delegate - khởi tạo ra một biến - một delegate có tên là Callback. Biến handler dưới đây tham chiếu tới hàm DelegateMethod
+> 	Callback handler = DelegateMethod;
+> 	
+> 	// Call the delegate and pass string parameter
+> 	handler("Hello World");
+> 	
+> 	//Use Delegate to pass method to another method as an argument
+> 	public static void MethodWithCallback(int param1, int param2, Callback callback)
+> 	{
+> 	    callback("The number is: " + (param1 + param2).ToString());
+> 	}
+> 	//pass the `handler` type `DelegateMethod` as a parameter of `MethodWithCallback` method
+> 	MethodWithCallback(1, 2, handler);
+> 	
