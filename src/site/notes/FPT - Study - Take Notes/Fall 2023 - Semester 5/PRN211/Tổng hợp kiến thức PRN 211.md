@@ -766,9 +766,9 @@ Mô hình 3 lớp - layer gồm có 3 thành phần chính:
 - Business Logic Layer (BLL): layer phân ra thành 2 nhiệm vụ:
 	- Nơi đáp ứng các yêu cầu đối với thao tác dữ liệu gửi từ GUI layer, xử lý chính nguồn dữ liệu từ Presentation Layer trước khi truyền xuống Data Access Layer và lưu xuống hệ quản trị CSDL.
 	- Nơi kiểm tra các ràng buộc, tính toàn vẹn và hợp lệ dữ liệu, thực hiện tính toán - xử lý các yêu cầu nghiệp vụ trước khi trả kết quả về Presentation Layer
-   > Trong C# web app ta xây dựng lớp này qua project Service
+   **<span style="color:#9a7db0">Trong C# web app ta xây dựng lớp này qua project Service</span>****
 - Data Access Layer (DAL): Lớp có chức năng giao tiếp với hệ quản trị CSDL như thực hiện các công việc liên quan đến lưu trữ và truy vấn CRUD dữ liệu
-  > Trong C# web app ta xây dựng lớp này qua project Repository
+ <span style="color:#9a7db0">**Trong C# web app ta xây dựng lớp này qua project Repository**</span>
     
 <span style="color:#91819c">🔗 Nguồn:[Mô hình 3 lớp - top dev](https://topdev.vn/blog/mo-hinh-3-lop-la-gi/)</span>
 
@@ -778,10 +778,5 @@ Mô hình 3 lớp - layer gồm có 3 thành phần chính:
 | ------------------------------- | -------------------------------- | ------------------------------------------------------------ |
 | Class Form ListStudents.cs - UI | Class StudentRepositorySqlServer | Class Student Id, Name, Yob  {get; set;} cho từng thuộc tính |
 | StudentRepoSqlServer `_repo`    | List`<Student>` `_ds`;           |                                                              |
-| dgvStudentList                  | GetAll() -> List<Student>        |                                                              |
-| btnAdd()                        | Add(Student x)                   |                                                              |
-| btnUpdate()                     | Update(Student x)                |                                                              |
-| btnDelete()                     | Delete(id)                       |                                                              |
-| btnSearch()                     | Search(id)                       |                                                              |
-|                                 |                                  |                                                              |
+
 
