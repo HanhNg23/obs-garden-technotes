@@ -797,16 +797,16 @@ Mô hình 3 lớp - layer gồm có 3 thành phần chính:
 
 
 
-| UI                                                                             | Chứa data phục vụ Form                                                                           | Định dạng dữ liệu phục vụ                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| UI                                                                             | Chứa data phục vụ Form                                                                             | Định dạng dữ liệu phục vụ                                    |
+| ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | Class Form ListStudents.cs - UI                                                | Class StudentRepositorySqlServer OR StudentRepositoryMySqlServer - implement -> IStudentRepository | Class Student Id, Name, Yob  {get; set;} cho từng thuộc tính |
-| IStudentRepository _repo                                                       | List`<Student>` `_ds`;                                                                           |                                                              |
-| (👆 _repo. sẽ ăn theo các hàm bên lớp con mà đã triển khai từ Interface Cha 👉 |                                                                                                  |                                                              |
+| IStudentRepository _repo                                                       | List`<Student>` `_ds`;                                                                             |                                                              |
+| (👆 _repo. sẽ ăn theo các hàm bên lớp con mà đã triển khai từ Interface Cha 👉 |                                                                                                    |                                                              |
 | dgvStudentList                                                                 | GetAll() -> List\<Student\>                                                                        |                                                              |
-| btnAdd()                                                                       | Add(Student x)                                                                                   |                                                              |
-| btnUpdate()                                                                    | Update(Student x)                                                                                |                                                              |
-| btnDelete()                                                                    | Delete(id)                                                                                       |                                                              |
-| btnSearch()                                                                    | Search(id)                                                                                       |                                                              |
+| btnAdd()                                                                       | Add(Student x)                                                                                     |                                                              |
+| btnUpdate()                                                                    | Update(Student x)                                                                                  |                                                              |
+| btnDelete()                                                                    | Delete(id)                                                                                         |                                                              |
+| btnSearch()                                                                    | Search(id)                                                                                         |                                                              |
 
 > [!SUMMARY]+ Tổng quát
 > <span style="color:#9a7db0">Class StudentRepositoryMySQL : IStudentRepository</span>
