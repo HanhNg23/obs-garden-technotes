@@ -54,21 +54,31 @@
   > Thực thi code Java trên đa nền tảng sẽ thông qua khái niệm Platform-independent - code của Java sẽ được chạy trên môi trường ảo là **JVM -Java Virtual Machine** - Platform-dependent, JVM tùy loại OS sẽ được thiết kế riêng để cài đặt. Vd như Mac OS X, Window, Linux thì sẽ có JVM riêng cho mỗi OS trên. ([See](https://www.geeksforgeeks.org/java-platform-independent/))
 
 ## I. .NET, .NET FRAMEWORK, .NET CORE 
-   🫱 [See](https://learn.microsoft.com/en-us/dotnet/core/introduction)
-- .NET là một cross platform - chạy đa nền, app chạy không phụ thuộc OS - write once run anywhere (WORA)
-- .NET là nền tảng môi trường, bộ thư viện, cung cấp toàn bộ tài nguyên cho việc chạy app .NET, C#, VB.NET, C++.NET
-- .NET có thể được viết bằng ngôn ngữ lập trình C#, F#, Visual Basic. 
-   > Trong chương trình học của môn PRN211 -> viết .NET bằng C# trên visual-studio
-- Hệ sinh thái .NET gồm có (theo thứ tự thời gian)
-	- .NET Framework -- work as JDK idea of Java -- Hiện tại chỉ work với window
-	- Mono -- triển khai từ .NET Framework nhưng thiết kế để trở thành cross-platform (Một framework hoạt động trên nhiều hệ điều hành khác nhau)
-	- .NET (Core) -- .NET CROSS PLATFORM - là bản kế thừa open source của .NET Framework nhưng được thiết kế để hoạt động như một cross-platform. Used for Linux, macOS, and Windows apps. 
-> [.Net History](https://learn.microsoft.com/en-us/dotnet/core/introduction#net-history)
+1. Giới thiệu
+	🍎 [Microsoft Dotnet Core Introduction](https://learn.microsoft.com/en-us/dotnet/core/introduction)
+	- .NET là một cross platform - chạy đa nền, app chạy không phụ thuộc OS - write once run anywhere (WORA)
+	- .NET là nền tảng môi trường, bộ thư viện, cung cấp toàn bộ tài nguyên cho việc chạy app .NET, C#, VB.NET, C++.NET
+	- .NET có thể được viết bằng ngôn ngữ lập trình C#, F#, Visual Basic. 
+	<span style="color:#6a5858">Trong chương trình học của môn PRN211 -> viết .NET bằng C# trên visual-studio</span>
+2. Hệ sinh thái .NET
+	Hệ sinh thái .NET gồm có (theo thứ tự thời gian)
+		- .NET Framework -- work as JDK idea of Java -- Hiện tại chỉ work với window
+		- Mono -- triển khai từ .NET Framework nhưng thiết kế để trở thành cross-platform (Một framework hoạt động trên nhiều hệ điều hành khác nhau)
+		- .NET (Core) -- .NET CROSS PLATFORM - là bản kế thừa open source của .NET Framework nhưng được thiết kế để hoạt động như một cross-platform. Used for Linux, macOS, and Windows apps. 
+	🍎 [.Net History](https://learn.microsoft.com/en-us/dotnet/core/introduction#net-history)
+3. Cài đặt .NET 
 - Muốn .NET chạy được trên đa nền tảng, phải cài đặt 2 Binary distributions sau:
-	- .NET SDK - bộ tool, thư viện và runtimes cho việc phát triển, xây dựng và kiểm tra apps .NET
-	> (tương tự JDK - bộ công cụ cho nhà lập trình viên ứng dụng java)
-	- .NET Runtimes - bộ runtimes và thư viện hỗ trợ running apps 
-	
+	- .NET SDK - bộ tool, thư viện và runtimes cho việc phát triển, xây dựng và kiểm tra apps .NET <span style="color:#6a5858">(tương tự JDK - bộ công cụ cho nhà lập trình viên ứng dụng java)</span>
+	- .NET Runtimes - bộ runtimes và thư viện hỗ trợ running apps
+	🍎 [How to install ?](https://learn.microsoft.com/en-us/dotnet/core/install/)
+
+> [!INFO] Biến môi trường
+> - Dotnet muôn run anywhere cần set up biến môi trường sau khi đã install thành công .NET platform - để hệ thông biết được vì trí gọi C# Compiler - Tương tự như Java có biến là JAVA_HOME
+> - Biến là đại diện cho một vùng nhớ - một địa chỉ - tại địa chỉ này sẽ lưu trữ một giá trị  sẽ lưu giá trị đó ở một vị trí trong bộ nhớ, vị trí này rộng lơn bao nhiêu hay được cấp phát bao nhiêu bộ nhớ sẽ dựa trên kiểu dữ liệu khai báo cho biến
+> - Lý do hệ điều hành có chỗ để **khai báo "Biến môi trường"** 
+>	Lấy vd: Tomcat, Intelliji, Netbeans, Eclipse các app này chuyên dùng biên triển khai các app java tuy nhiên java muốn chạy cần có JDK, các app trên muốn giao tiếp với nhau trên cùng hệ điều hành nó cần biết JDK có nằm trong máy chưa, lúc này yêu cầu vị trí JDK phải được lộ diện toàn hệ điều hành bằng cách khai báo vị trí của JDK là biến môi trường.
+>	==> Biến môi trường là một nơi lưu giá trị cho các app giao tiếp với nhau có giá trị là đường dẫn link path nơi lưu trữ trong bộ trong hệ thống
+		
 - Trình biên dịch trong .NET - Compilation - [See](https://learn.microsoft.com/en-us/dotnet/core/introduction#compilation)
 	- Code được viết ra cho ứng dụng .NET được biên dịch sang ngôn ngữ trung gian IL - Intermediate Language (tương tự byte code - giống style JAVA).
 	- IL - a compact code format - một định dạng mã nhỏ, tiêu tốn ít dung lượng, code format này có thể sử dụng trên trên nhiều OS và kiến trúc
