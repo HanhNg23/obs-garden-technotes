@@ -108,7 +108,8 @@
 - <span style="color:#537288">Resolves problem:</span> <span style="color:#9a7db0">Object-oriented programming allows classes to _inherit_ commonly used state and behavior from other classes</span>
 	- For example, `Bicycle` now becomes the _superclass_ of `MountainBike`, `RoadBike`, and `TandemBike`
 	- ![](https://docs.oracle.com/javase/tutorial/figures/java/concepts-bikeHierarchy.gif)
-- > [!WARNING]
+
+> [!WARNING]
 > In the Java programming language, <span style="color:#d4a216">**EACH CLASS IS ALLOWED TO HAVE ONE DIRECT SUPERCLASS**</span>. <span style="color:#9a7db0">But each superclass has the potential for an unlimited number of subclasses</span>
 - The syntax for creating a subclass example:
 ```Java
