@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/programming-languages/java/1-java-core/object-oriented-programming-concepts/","title":"Java Object Oriented Programming Core Concepts","pinned":true,"tags":["gardenEntry"]}
+{"dg-publish":true,"permalink":"/programming-languages/java/1-java-core/object-oriented-programming-concepts/","title":"Java Object Oriented Programming Core Concepts"}
 ---
 
 # Object-Oriented Programming Core Concepts
