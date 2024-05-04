@@ -1,8 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/Variables/","title":"Language Basic Variables","noteIcon":"1","updated":"2024-05-04T16:01:30.375+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/Variables/","title":"Language Basic Variables","noteIcon":"1","updated":"2024-05-04T16:08:00.156+07:00"}
 ---
 
-<span style="font-weight:bold; color:#6a5858; font-size: 85%;">In Java, variables are used to store data values that can be accessed and manipulated by the program. They are defined by a data type, a name, and an optional initial value. This note covers the types of variables in Java, the rules and conventions for naming fields, and how variables are managed and manipulated by the program.</span>
+<span style="color:#6a5858; font-size: 85%;">In Java, variables are used to store data values that can be accessed and manipulated by the program. They are defined by a data type, a name, and an optional initial value. This note covers the types of variables in Java, the rules and conventions for naming fields, and how variables are managed and manipulated by the program.</span>
 
 ## The variable  types
 ### Instance Variables - Non-static Fields
