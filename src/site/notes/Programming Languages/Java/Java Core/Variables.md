@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/Variables/","title":"Language Basic Variables","noteIcon":"1","updated":"2024-05-04T16:14:30.118+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/Variables/","title":"Language Basic Variables","noteIcon":"1","updated":"2024-05-04T21:01:28.431+07:00"}
 ---
 
 <span style="color:#6a5858; font-size: 85%;">In Java, variables are used to store data values that can be accessed and manipulated by the program. They are defined by a data type, a name, and an optional initial value. This note covers the types of variables in Java, the rules and conventions for naming fields, and how variables are managed and manipulated by the program.</span>
@@ -36,11 +36,11 @@
 - In convention, name begin with a letter, should not "$" or "_", subsequent character can be letters, digits, dollar signs, or underscore characters.
 - Variable name uses full words instead of cryptic abbreviations --> make it easier to read and understand
 - If the name consists of only one word, spell that word in all lowercase letters.
-	- For example: cadence, speed, gear (should not a, b, c, d)
+	- *For example: cadence, speed, gear (should not a, b, c, d)*
 - If the name consists of more than one word, capitalize the first letter of each subsequent word. 
-	- For example: gearRatio, currentGear
+	- *For example: gearRatio, currentGear*
 - Constant Variable Name: capitalizing every letter and separating subsequent words with the underscore character "_". By convention, the underscore character is never used elsewhere.
-	- For example: static final int NUM_GEARS = 6
+	- *For example: static final int NUM_GEARS = 6*
 
 
 ## References
