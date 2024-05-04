@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/About Java Technology/","title":"About The Java Technology","noteIcon":"1","updated":"2024-05-04T23:09:17.262+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/About Java Technology/","title":"About The Java Technology","noteIcon":"1","updated":"2024-05-04T23:11:17.506+07:00"}
 ---
 
 <span style="color:#6a5858; font-size: 85%;">
@@ -14,13 +14,11 @@ Java technology is both a programming language and a platform. In this post, I w
 	- Those source files are then compiled by the <span style="color:#9a7db0">"Javac compiler"</span> into <span style="color:#9a7db0">".class"</span> files 
 		- <span style="color:#9a7db0">".class"</span> files - a kind of file that contains the <span style="color:#9a7db0">"Java bytecode"</span> - but does not contain code that is native to your computer processor (CPU) for executing directly which compares to the compiler of C language. This file is designed to be actually executed/read by a JVM (Java Virtual Machine) in the machine-level language of JVM.		
 		<div style="text-align: center; margin: 20px auto"> <img src="https://i.imgur.com/VyvDhkY.png" alt="Image" style="display: block; margin: 0 auto;"> <p style="position: relative; left: 50%; transform: translateX(-50%);font-size: 70%;"><a href="https://docs.fileformat.com/programming/class/#classfile-structure">The Class File Structure example</a> </p></div>
-		
 		<div style="margin: 20px auto"><img src="https://docs.oracle.com/javase/tutorial/figures/getStarted/getStarted-compiler.gif" alt="Image"> <p style="font-size: 70%;">An overview of the software development process</p></div>
 	- The JVM is compatible with multiple operating systems, which means that the same ".class" files can be executed on various platforms such as Microsoft Windows, Solaris OS, Linux, or Mac OS.
 		- ![](https://i.imgur.com/ZUARtwb.png)
 	- There are some certain virtual machines, like [Java SE HotSpot at a Glance](http://www.oracle.com/technetwork/java/javase/tech/index-jsp-136373.html) , take extra measures during runtime to enhance the performance of your application. This involves actions like identifying performance limitations and frequently recompiling heavily used code sections into native code for improved efficiency.
 		
-
     > [!NOTE] 💡Note
     > - The JVM is dependent on the operating system, with specific versions tailored for different OSs. 
     > 	- *For instance, using Mac OS X requires a distinct JVM compared to using Windows or another OS.* 
@@ -37,7 +35,6 @@ Java technology is both a programming language and a platform. In this post, I w
 		- The API is a large collection of ready-made software components that provide many useful capabilities.
 		- It is grouped into the "Libraries of related classed and interfaces" - known as "packages".
 		- ![](https://i.imgur.com/wLcGZBE.png)
-
 
 ## Disadvantages of Java Technology
 - As a platform-independent environment - the Java platform can be a bit slower than native code. However, with advanced compiler and virtual machine technologies --> give the performance close to that of native code without threatening portability.
