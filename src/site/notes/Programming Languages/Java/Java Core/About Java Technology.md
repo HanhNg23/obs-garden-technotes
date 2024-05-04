@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/About Java Technology/","title":"About The Java Technology","noteIcon":"1","updated":"2024-05-04T23:07:32.155+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/About Java Technology/","title":"About The Java Technology","noteIcon":"1","updated":"2024-05-04T23:09:17.262+07:00"}
 ---
 
 <span style="color:#6a5858; font-size: 85%;">
@@ -7,7 +7,7 @@ Java technology is both a programming language and a platform. In this post, I w
 
 ## The Java Programming Language
 - Java programming language is a high level language, there are many buzzwords to characterize this powerful programming language
-	![](https://i.imgur.com/UTy6QiY.png)
+	- ![](https://i.imgur.com/UTy6QiY.png)
 - To understand why we use those buzzwords to describe Java programming --> let's go to this link [_The Java Language Environment_](http://www.oracle.com/technetwork/java/langenv-140151.html) - help to explain each buzzwords above.
 - The most feature of Java programming when it was first came out is the ability to <span style="color:#9a7db0">"Write Once Run Anywhere - WORA</span>" --> Let's capture this concept:
 	- In the Java programming language, all source code is first written in plaint text files ending with the <span style="color:#9a7db0">".java"</span> extension
