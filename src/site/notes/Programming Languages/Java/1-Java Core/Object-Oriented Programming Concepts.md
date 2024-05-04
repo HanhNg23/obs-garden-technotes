@@ -1,8 +1,7 @@
 ---
-{"dg-publish":true,"permalink":"/programming-languages/java/1-java-core/object-oriented-programming-concepts/","title":"Java Object Oriented Programming Core Concepts"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/1-Java Core/Object-Oriented Programming Concepts/","title":"Object-Oriented Programming Core Concepts","noteIcon":"1","updated":"2024-05-04T13:49:48.005+07:00"}
 ---
 
-# Object-Oriented Programming Core Concepts
 
 <span style="color:#6a5858; font-size: 85%;">Object-oriented programming (OOP) is a programming paradigm that organizes code around the concept of "objects", which are instances of classes that encapsulate data and procedures. OOP promotes concept such as encapsulation, inheritance, and polymorphism, making code more modular, reusable, and flexible for easier management of complex systems. In this post, we are going to explore the key concepts used in OOP.</span>
 
