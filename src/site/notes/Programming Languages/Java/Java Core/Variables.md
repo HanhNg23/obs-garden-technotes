@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/Variables/","title":"Language Basic Variables","noteIcon":"1","updated":"2024-05-04T16:08:00.156+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/Variables/","title":"Language Basic Variables","noteIcon":"1","updated":"2024-05-04T16:14:30.118+07:00"}
 ---
 
 <span style="color:#6a5858; font-size: 85%;">In Java, variables are used to store data values that can be accessed and manipulated by the program. They are defined by a data type, a name, and an optional initial value. This note covers the types of variables in Java, the rules and conventions for naming fields, and how variables are managed and manipulated by the program.</span>
@@ -9,7 +9,7 @@
 - Objects store their individual states in "non-static fields" == fields declared without the static keyword.
 - Non-static fields - known as instance variables because their values are unique to each instance of a class (to each object).
 	- *For example, the `currentSpeed` of bicycle-A object is independent from the `currentSpeed` of bicycle-B object.*
-<div><img src="https://www.w3resource.com/w3r_images/java-class-image.png" alt="Image"> <p style="font-size: 70%;">Image from w3resource "Java Class, methods, instance variables"</p></div>
+<div><img src="https://www.w3resource.com/w3r_images/java-class-image.png" alt="Image"> <p style="font-size: 70%;">Image from w3resource.com "Java Class, methods, instance variables"</p></div>
 
 
 ### Class Variables - Static Fields
@@ -17,7 +17,7 @@
 	- *For example, A field defining the number of gears for a particular kind of bicycle - regarded as class bicycle - could be marked as `static`. Since conceptually the same number of gears will apply to all instances of all instances of class bicycle.*
 		- *The code `static int numGears = 6;` would create such a static field of class bicycle. --> bicyle A, B, C objects use the same numGears is 6.*
 		- *Additionally, the keyword `final` could be added to indicate that the number of gears will never change.*
-<div> <img src="https://javaconceptoftheday.com/wp-content/uploads/2016/07/ClassVariableVsInstanceVariable.png" alt="Image"> <p style="font-size: 70%;">Image from javaconceptoftheday "Class Variables And Instance Variables In Java
+<div> <img src="https://javaconceptoftheday.com/wp-content/uploads/2016/07/ClassVariableVsInstanceVariable.png" alt="Image"> <p style="font-size: 70%;">Image from javaconceptoftheday.com "Class Variables And Instance Variables In Java
 "</p></div>
 
 ###  Local Variables
@@ -28,6 +28,8 @@
 ###  Parameter
 - Parameters - for example `public static void main(String[] args)`. Here, the `args` variable is the parameter to this method
 - Parameters are always classified as "variables" not "fields"
+- <div> <img src="https://mathbits.com/MathBits/Java/Methods/methodspic.jpg" alt="Image"> <p style="font-size: 70%;">Image from mathbits.com "What is Actually Passed to a Method ?"</p></div>
+
 
 ## Naming Conventions
 - Variable names are case-sensitive. Allow an unlimited-length sequence of Unicode letters and digits, allow begin with a letter, the dollar sign "`$`", or the underscore character "`_`".
