@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/2 - OOP Core Concepts/","title":"Object-Oriented Programming Core Concepts","noteIcon":"1","updated":"2024-05-04T21:07:38.622+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Core/2 - OOP Core Concepts/","title":"Object-Oriented Programming Core Concepts","noteIcon":"1","updated":"2024-05-04T23:35:12.183+07:00"}
 ---
 
 
@@ -27,7 +27,7 @@
 	- Information-hiding: ensures that internal implementation details are kept private
 	- Core re-use: permits the utilization of pre-existing objects in new programs, enhancing efficiency and reliability when implement/test/debug, task-specific objects.
 	- Pluggability & Debugging ease: facilitate the removal and replacement of problematic objects without affecting the entire system, akin to fixing mechanical components in the real world.
-
+- Reference: 🍎 [Objects](https://docs.oracle.com/javase/tutorial/java/javaOO/objects.html)
 ## Class
 - <span style="color:#537288">Given the situation:</span> in the real world, it is common to come across multiple individual objects of the same kind.
 	- *For example, there may be thousands of other bicycles in existence, all of the same make and model - Each bicycle was built from the same set of blueprints and therefore contains the same components.*
@@ -96,6 +96,7 @@
 		
 	```
 
+- Reference: 🍎 [Classes](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html)
 ## Inheritance
 - <span style="color:#537288">Given the situation:</span> Different types of objects frequently share similarities or characteristics with one another.
 	- For example:
@@ -121,8 +122,9 @@
 //This gives `MountainBike` all the same fields and methods as `Bicycle`, yet allows its code to focus exclusively on the features that make it unique
 ```
 
-> [!INFO] References to Java Inheritance
-> - 🍎 [Inheritance in Java](https://www.geeksforgeeks.org/inheritance-in-java/)
+- Reference:
+	- 🍎 [Inheritance in Java](https://www.geeksforgeeks.org/inheritance-in-java/)
+	- 🍎 [Inheritance](https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html)
 
 ## Interface
 - As we have already mentioned, <span style="color:#9a7db0">***objects communicate with the outside world through the methods that they expose***</span>.
@@ -183,8 +185,7 @@
 - <span style="color:#d4a216">The powerful of implementing Interface</span>
 	 - Implementing an interface <span style="color:#d4a216">allows a class to become more formal about the behavior it promises to provide</span>.
 	 - Interfaces <span style="color:#d4a216">form a contract between the class and the outside world</span>. This contract is enforced at build time by the compiler --> If your ***class claims to implement an interface***, ***all methods defined by that interface must appear in its source code*** before the class will successfully compile.
-
-## Package
+- Reference: 🍎 [Interfaces](https://docs.oracle.com/javase/tutorial/java/IandI/createinterface.html)
 - <span style="color:#9a7db0">A package</span> - <span style="color:#9a7db0">a namespace that organizes a set of related classes and interfaces.</span>
 	- *<span style="color:#6a5858">Similar to your different folders on your computer. You might keep HTML pages in one folder, images in another, and scripts or applications in yet another for example.</span>*
 - <span style="color:#9a7db0">The Java platform provides an enormous class library (a set of packages) </span> suitable for use in your own applications. 
@@ -200,6 +201,7 @@
 		- <span style="color:#6a5858">For example:</span>
 			- <span style="color:#6a5858"> a `String` object contains state and behavior for character strings;</span> 
 			- <span style="color:#6a5858">a `File` object allows a programmer to easily create, delete, inspect, compare, or modify a file on the filesystem;</span>
+	- Reference: 🍎 [Packages](https://docs.oracle.com/javase/tutorial/java/package/index.html)
 ## References
 - [Object-Oriented Programming Concepts](https://docs.oracle.com/javase/tutorial/java/concepts/index.html)
 - [Java is Object Oriented](https://www.oracle.com/java/technologies/object-oriented.html#343)
