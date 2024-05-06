@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/2 - Dependency Injection/","title":"Spring Dependency Injection","noteIcon":"1","updated":"2024-05-06T15:37:49.583+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/2 - Dependency Injection/","title":"Spring Dependency Injection","noteIcon":"1","updated":"2024-05-06T15:40:31.400+07:00"}
 ---
 
 
@@ -14,7 +14,7 @@
 	> *From [baeldung.com Intro to Inversion of Control and Dependency Injection with Spring](https://jstobigdata.com/spring/inversion-of-control-and-dependency-injection-in-spring/#google_vignette)* 
 - Mechanism to achieve IoC
 	- We can achieve Inversion of Control through various mechanisms such as: Strategy design patter, Service Locator pattern. Factory pattern, and Dependency Injection.
-	- In this post, we're going to look at Dependency Injection.
+	- <span style="color:#6a5858">In this post, we're going to look at Dependency Injection.</span>
 
 ## Dependency Injection
 - <span style="color:#9a7db0">**Dependency Perception**</span>
@@ -27,8 +27,8 @@
 > *From [baeldung.com Intro to Inversion of Control and Dependency Injection with Spring](https://jstobigdata.com/spring/inversion-of-control-and-dependency-injection-in-spring/#google_vignette)*
 
 ## The Spring IoC Container, work as a Spring Factory
-- <span style="color:#6a5858">An IoC container is a common characteristic of frameworks that implement IoC.</span>
-- <span style="color:#6a5858">In Spring framework, the interface `ApplicationContext` represents the IoC container --> Spring container is responsible for instantiating, configuring and assembling objects know as beans, as well as managing their life cycles.</span> 
+> - <span style="color:#6a5858">An IoC container is a common characteristic of frameworks that implement IoC.</span>
+> - <span style="color:#6a5858">In Spring framework, the interface `ApplicationContext` represents the IoC container --> Spring container is responsible for instantiating, configuring and assembling objects know as beans, as well as managing their life cycles.</span> 
 - We are going to explore Spring Factory to understand the bean/object creation and management.
 - ![](https://i.imgur.com/GPlq5XJ.png)
 	- <span style="color:#537288">Configuration</span>: Spring defines "beans" by utilizing a configuration using metadata which can be in XML format or annotations or even Java Factory Classes --> that's fed into the Spring factory.
