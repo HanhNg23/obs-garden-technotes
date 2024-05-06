@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/3 - The motivation To Use Spring/","title":"Spring IoC Container Manages your Spring Beans","noteIcon":"1","updated":"2024-05-06T19:15:21.830+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/3 - The motivation To Use Spring/","title":"Spring IoC Container Manages your Spring Beans","noteIcon":"1","updated":"2024-05-06T19:16:34.932+07:00"}
 ---
 
 
@@ -52,10 +52,10 @@
 		- <span style="color:#9a7db0">--> You can easily execute a method that involves delegation without a null pointer exception because Spring has wired up the beans</span>.
 
 - > [!INFO]- The power of Spring's Inversion of Control 
-> - Spring's IoC operates as a huge factory that looks up dependencies of a target class that it is instantiating. -> How ?
-> - It creates instances of the dependencies themselves and it identifies those dependencies using some thing called Reflection. 
-> - In the target class, uses the setters or constructor to inject those dependencies into the target class based on the instruction of configuration (in the format of metadata/XML/... ). The rules of engagement between components of target class are not in the code, not in some master client class, just in configuration.
-> <span style="color:#9a7db0">**--> Now Spring's IoC has the dependencies between objects but NOT in code, in configuration**</span>.
+  > - Spring's IoC operates as a huge factory that looks up dependencies of a target class that it is instantiating. -> How ?
+  > - It creates instances of the dependencies themselves and it identifies those dependencies using some thing called Reflection. 
+  > - In the target class, uses the setters or constructor to inject those dependencies into the target class based on the instruction of configuration (in the format of metadata/XML/... ). The rules of engagement between components of target class are not in the code, not in some master client class, just in configuration.
+  > <span style="color:#9a7db0">**--> Now Spring's IoC has the dependencies between objects but NOT in code, in configuration**</span>.
 
 ##### Dependency Management With BeanFactory
 - Let see how the spring decide what to inject for target class which required dependency injection.
