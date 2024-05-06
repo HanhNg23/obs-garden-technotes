@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/2 - Dependency Injection/","title":"Spring Dependency Injection","noteIcon":"1","updated":"2024-05-06T15:40:31.400+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/2 - Dependency Injection/","title":"Spring Dependency Injection","noteIcon":"1","updated":"2024-05-06T15:41:03.789+07:00"}
 ---
 
 
@@ -29,7 +29,7 @@
 ## The Spring IoC Container, work as a Spring Factory
 > - <span style="color:#6a5858">An IoC container is a common characteristic of frameworks that implement IoC.</span>
 > - <span style="color:#6a5858">In Spring framework, the interface `ApplicationContext` represents the IoC container --> Spring container is responsible for instantiating, configuring and assembling objects know as beans, as well as managing their life cycles.</span> 
-- We are going to explore Spring Factory to understand the bean/object creation and management.
+- 🔎 We are going to explore Spring Factory to understand the bean/object creation and management.
 - ![](https://i.imgur.com/GPlq5XJ.png)
 	- <span style="color:#537288">Configuration</span>: Spring defines "beans" by utilizing a configuration using metadata which can be in XML format or annotations or even Java Factory Classes --> that's fed into the Spring factory.
 	- <span style="color:#537288">Application Context</span>: Spring factory is called as an application context -> it reads the metadata and  generates an object representation of this metadata, which we refer to as bean definitions. Each bean definition has a primary identifier.
