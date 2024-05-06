@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/2 - Dependency Injection/","title":"Spring Dependency Injection","noteIcon":"1","updated":"2024-05-06T15:44:45.393+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/2 - Dependency Injection/","title":"Spring Dependency Injection","noteIcon":"1","updated":"2024-05-06T15:45:59.806+07:00"}
 ---
 
 
@@ -33,7 +33,7 @@
 - ![](https://i.imgur.com/GPlq5XJ.png)
 	- <span style="color:#537288">**Configuration**</span>: Spring defines "beans" by utilizing a configuration using metadata which can be in XML format or annotations or even Java Factory Classes --> that's fed into the Spring factory.
 	- <span style="color:#537288">**Application Context**</span>: Spring factory is called as an application context -> it reads the metadata and  generates an object representation of this metadata, which we refer to as bean definitions. Each bean definition has a primary identifier.
-		<span style="color:#878282">*The Spring framework offers different versions of the `ApplicationContext` interface for various types of applications. For standalone applications, it provides `AnnotationConfigApplicationContext`, `ClassPathXmlApplicationContext`, and `FileSystemXmlApplicationContext`. For web applications, it offers `WebApplicationContext`.*</span> 
+		- <span style="color:#878282">*The Spring framework offers different versions of the `ApplicationContext` interface for various types of applications. For standalone applications, it provides `AnnotationConfigApplicationContext`, `ClassPathXmlApplicationContext`, and `FileSystemXmlApplicationContext`. For web applications, it offers `WebApplicationContext`.*</span> 
 	- <span style="color:#537288">**Object Representation of Configuration**</span>: From those bean definitions, instances of the implementation class associated with each bean definition are instantiated.
 	- <span style="color:#537288">**Programmers API**</span>: When a request is made for bean - the primary identifier or alias (alternative bean ID) of the bean definition is used to retrieve the corresponding instance of the implementation class. 
 	- <span style="color:#537288">**Request of Bean by Identifier**</span>: the request picks the instance up from the bean definition and says to the factory bean "Can your give me the bean whose ID is 123 (or something)" --> And the factory says "I've created the instance of class implementation for this bean definition. I'll go and get it for yo from the application context or cache, and I will return it to you". By the way, this class instance has already wired up all its dependencies.
