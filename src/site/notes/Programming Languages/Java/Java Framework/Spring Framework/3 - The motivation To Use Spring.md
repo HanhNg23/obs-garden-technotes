@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/3 - The motivation To Use Spring/","title":"How Spring IoC Container Manages your Spring Beans","noteIcon":"1","updated":"2024-05-06T19:10:11.672+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/3 - The motivation To Use Spring/","title":"Spring IoC Container Manages your Spring Beans","noteIcon":"1","updated":"2024-05-06T19:10:29.968+07:00"}
 ---
 
 
