@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/3 - The motivation To Use Spring/","title":"Spring IoC Container Manages your Spring Beans","noteIcon":"1","updated":"2024-05-06T19:16:34.932+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/3 - The motivation To Use Spring/","title":"Spring IoC Container Manages your Spring Beans","noteIcon":"1","updated":"2024-05-06T23:56:19.159+07:00"}
 ---
 
 
@@ -80,4 +80,4 @@
 ## References
 - [Interface ApplicationContext](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/ApplicationContext.html)
 - [The IoC Container](https://docs.spring.io/spring-framework/reference/core/beans.html)
-- [Chapter What is Spring ? - Coursera Spring - Ecosystem and Core, LearnQuest][https://www.coursera.org/learn/spring-ecosystem-and-core?specialization=spring-framework]
+- [Chapter What is Spring ? - Coursera Spring - Ecosystem and Core, LearnQuest](https://www.coursera.org/learn/spring-ecosystem-and-core?specialization=spring-framework])
