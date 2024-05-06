@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/3 - The motivation To Use Spring/","title":"Spring IoC Container Manages your Spring Beans","noteIcon":"1","updated":"2024-05-06T19:10:29.968+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/3 - The motivation To Use Spring/","title":"Spring IoC Container Manages your Spring Beans","noteIcon":"1","updated":"2024-05-06T19:15:21.830+07:00"}
 ---
 
 
@@ -63,6 +63,7 @@
 	- Spring provides the `org.springframework.beans.factory.BeanFactory` interface to create and manage our beans. (Bean refer objects that are instantiated, assembled, and managed, fully wired up with dependencies by the Spring IoC container)
 	- The <span style="color:#9a7db0">**BeanFacotry**</span> implementation is the actual container which instantiates configures, and manages a number of beans through its API: 
 		- ![](https://i.imgur.com/u0nW6rz.png)
+		
 ##### The ApplicationContext
 - Interact with your Managed Beans
 - **The ApplicationContext builds on top of the BeanFactory**
@@ -75,3 +76,8 @@
 		- Parent contexts
 		- Application-layer specific contexts such as the `WebApplicationContext`
 - **`BeanFactory` provides the configuration framework and basic functionality, and the `ApplicationContext` adds more enterprise-specific functionality**. 
+
+## References
+- [Interface ApplicationContext](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/ApplicationContext.html)
+- [The IoC Container](https://docs.spring.io/spring-framework/reference/core/beans.html)
+- [Chapter What is Spring ? - Coursera Spring - Ecosystem and Core, LearnQuest][https://www.coursera.org/learn/spring-ecosystem-and-core?specialization=spring-framework]
