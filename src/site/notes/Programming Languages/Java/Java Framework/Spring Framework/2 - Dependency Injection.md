@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/2 - Dependency Injection/","title":"Spring Dependency Injection","noteIcon":"1","updated":"2024-05-06T15:41:03.789+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/2 - Dependency Injection/","title":"Spring Dependency Injection","noteIcon":"1","updated":"2024-05-06T15:43:50.750+07:00"}
 ---
 
 
@@ -31,16 +31,16 @@
 > - <span style="color:#6a5858">In Spring framework, the interface `ApplicationContext` represents the IoC container --> Spring container is responsible for instantiating, configuring and assembling objects know as beans, as well as managing their life cycles.</span> 
 - 🔎 We are going to explore Spring Factory to understand the bean/object creation and management.
 - ![](https://i.imgur.com/GPlq5XJ.png)
-	- <span style="color:#537288">Configuration</span>: Spring defines "beans" by utilizing a configuration using metadata which can be in XML format or annotations or even Java Factory Classes --> that's fed into the Spring factory.
-	- <span style="color:#537288">Application Context</span>: Spring factory is called as an application context -> it reads the metadata and  generates an object representation of this metadata, which we refer to as bean definitions. Each bean definition has a primary identifier.
+	- <span style="color:#537288">**Configuration**</span>: Spring defines "beans" by utilizing a configuration using metadata which can be in XML format or annotations or even Java Factory Classes --> that's fed into the Spring factory.
+	- <span style="color:#537288">**Application Context**</span>: Spring factory is called as an application context -> it reads the metadata and  generates an object representation of this metadata, which we refer to as bean definitions. Each bean definition has a primary identifier.
 		- <span style="color:#878282">The Spring framework offers different versions of the `ApplicationContext` interface for various types of applications. For standalone applications, it provides `AnnotationConfigApplicationContext`, `ClassPathXmlApplicationContext`, and `FileSystemXmlApplicationContext`. For web applications, it offers `WebApplicationContext`.</span> 
-	- <span style="color:#537288">Object Representation of Configuration</span>: From those bean definitions, instances of the implementation class associated with each bean definition are instantiated.
-	- <span style="color:#537288">Programmers API</span>: When a request is made for bean - the primary identifier or alias (alternative bean ID) of the bean definition is used to retrieve the corresponding instance of the implementation class. 
-	- <span style="color:#537288">Request of Bean by Identifier</span>: the request picks the instance up from the bean definition and says to the factory bean "Can your give me the bean whose ID is 123 (or something)" --> And the factory says "I've created the instance of class implementation for this bean definition. I'll go and get it for yo from the application context or cache, and I will return it to you". By the way, this class instance has already wired up all its dependencies.
+	- <span style="color:#537288">**Object Representation of Configuration**</span>: From those bean definitions, instances of the implementation class associated with each bean definition are instantiated.
+	- <span style="color:#537288">**Programmers API**</span>: When a request is made for bean - the primary identifier or alias (alternative bean ID) of the bean definition is used to retrieve the corresponding instance of the implementation class. 
+	- <span style="color:#537288">**Request of Bean by Identifier**</span>: the request picks the instance up from the bean definition and says to the factory bean "Can your give me the bean whose ID is 123 (or something)" --> And the factory says "I've created the instance of class implementation for this bean definition. I'll go and get it for yo from the application context or cache, and I will return it to you". By the way, this class instance has already wired up all its dependencies.
 - <span style="color:#d4a216">==> SPRING WIRES UP BEANS (Class instances) - The plumbing code is done for you.</span>
-	- <span style="color:#878282">The process of connecting and configuring beans is referred to as wiring up. This wiring process, which involves setting up the relationships between different components, is achieved through dependency injection, where the dependencies of an bean are injected into by the spring framework.</span>
-		- <span style="color:#878282">--> Without Spring, you assemble everything yourself in code.</span>
-		- <span style="color:#878282">--> With Spring, it assembles it for you and give you a ready to use object graph. So you can use these bean in your applications straight away. And if the class askes for delegates down to some of its properties or other classes, Spring has already created and injected them into the current class that you're dealing with.</span>
+	- <span style="color:#878282">*The process of connecting and configuring beans is referred to as wiring up. This wiring process, which involves setting up the relationships between different components, is achieved through dependency injection, where the dependencies of an bean are injected into by the spring framework.*</span>
+		- <span style="color:#878282">*--> Without Spring, you assemble everything yourself in code.*</span>
+		- <span style="color:#878282">*--> With Spring, it assembles it for you and give you a ready to use object graph. So you can use these bean in your applications straight away. And if the class askes for delegates down to some of its properties or other classes, Spring has already created and injected them into the current class that you're dealing with.*</span>
 		- ![](https://i.imgur.com/1BcwU8C.png)
 
 
@@ -59,10 +59,10 @@
 - ![](https://i.imgur.com/oKpJ9Oh.png)
 
 ### What do core modules do ?
-- Core and Beans: these modules provide IoC and Dependency Injection features.
-- Context: this module supports internationalization (118n), EJB, JMS.
-- Expression Language: it is an extension to the EL defined in JSP, it provides support to setting and getting property values and even method invocation.
-- AOP, Aspects and instrumentation: these modules aspect oriented programming implementation where you can use Advices, Pointcuts. The Aspects module provides support to integration with AspectJ.
-- Data Access/Integration: these modules basically provide support to interact with the database.
-- Web: this group provide support to create web applications.
+- **Core and Beans**: these modules provide IoC and Dependency Injection features.
+- **Context**: this module supports internationalization (118n), EJB, JMS.
+- **Expression** Language: it is an extension to the EL defined in JSP, it provides support to setting and getting property values and even method invocation.
+- **AOP, Aspects and instrumentation**: these modules aspect oriented programming implementation where you can use Advices, Pointcuts. The Aspects module provides support to integration with AspectJ.
+- **Data Access/Integration**: these modules basically provide support to interact with the database.
+- **Web**: this group provide support to create web applications.
 
