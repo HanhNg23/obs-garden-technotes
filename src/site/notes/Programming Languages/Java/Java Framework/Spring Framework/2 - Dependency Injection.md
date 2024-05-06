@@ -1,9 +1,10 @@
 ---
-{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/2 - Dependency Injection/","title":"Spring Dependency Injection","noteIcon":"1","updated":"2024-05-06T15:45:59.806+07:00"}
+{"dg-publish":true,"permalink":"/Programming Languages/Java/Java Framework/Spring Framework/2 - Dependency Injection/","title":"Spring Dependency Injection","noteIcon":"1","updated":"2024-05-06T16:02:51.904+07:00"}
 ---
 
-
-<span style="color:#6a5858; font-size: 85%;">👓 In this post, i will delve into the concept of Inversion of Control (IoC) and its close connection to Dependency Injection (DI). We will also explore how the Spring framework supports the implementation of IoC through DI, revolutionizing the way software components are managed and dependencies are injected.👉 Let's uncover how these principles work together to enhance the modularity and flexibility of software development. Also, we'll delve into the core modules of the Spring Framework and their benefits for programmers.</span>
+<div  style="color:#6a5858; font-size: 85%;">
+<p>👓 In this post, i will delve into the concept of Inversion of Control (IoC) and its close connection to Dependency Injection (DI). We will also explore how the Spring framework supports the implementation of IoC through DI, revolutionizing the way software components are managed and dependencies are injected. </p>
+<p>👉 Let's uncover how these principles work together to enhance the modularity and flexibility of software development. Also, we'll delve into the core modules of the Spring Framework and their benefits for programmers.</p> </div>
 
 ## Inversion of Control (IoC)
 - IoC Definition
